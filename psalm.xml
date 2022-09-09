@@ -9,14 +9,8 @@
     <projectFiles>
         <directory name="./src"/>
         <ignoreFiles>
-            <directory name="./tests"/>
             <directory name="./vendor"/>
         </ignoreFiles>
     </projectFiles>
-
-    <plugins>
-        <pluginClass class="Psalm\MockeryPlugin\Plugin"/>
-        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
-    </plugins>
 
 </psalm>
