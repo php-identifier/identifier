@@ -48,6 +48,8 @@ interface UuidInterface extends BinaryIdentifierInterface
      *
      * @link http://en.wikipedia.org/wiki/Uniform_Resource_Name Uniform Resource Name
      * @link https://datatracker.ietf.org/doc/html/rfc4122#section-3 RFC 4122, § 3: Namespace Registration Template
+     *
+     * @return non-empty-string
      */
     public function toUrn(): string;
 }
