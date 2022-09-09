@@ -30,6 +30,8 @@ interface UuidInterface extends BinaryIdentifierInterface
     /**
      * Returns a string representation of the identifier encoded as hexadecimal
      * characters
+     *
+     * @return non-empty-string
      */
     public function toHexadecimal(): string;
 
