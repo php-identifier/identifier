@@ -31,49 +31,49 @@ namespace Identifier\Uuid;
 enum Version: int
 {
     /**
-     * Version 1 (time-based) UUID
+     * Gregorian time-based UUID
      */
-    case Time = 1;
+    case GregorianTime = 1;
 
     /**
-     * Version 2 (DCE Security) UUID
+     * DCE Security version UUID
      */
     case DceSecurity = 2;
 
     /**
-     * Version 3 (name-based and hashed with MD5) UUID
+     * Name-based UUID that uses MD5 hashing
      */
     case HashMd5 = 3;
 
     /**
-     * Version 4 (random) UUID
+     * Randomly or pseudo-randomly generated UUID
      */
     case Random = 4;
 
     /**
-     * Version 5 (name-based and hashed with SHA1) UUID
+     * Name-based UUID that uses SHA-1 hashing
      */
     case HashSha1 = 5;
 
     /**
-     * Version 6 (reordered time-based) UUID
+     * Reordered Gregorian time-based UUID
      */
-    case ReorderedTime = 6;
+    case ReorderedGregorianTime = 6;
 
     /**
-     * Version 7 (Unix Epoch time-based) UUID
+     * Unix Epoch time-based UUID
      */
     case UnixTime = 7;
 
     /**
-     * Version 8 (implementation-specific, custom) UUID
+     * Reserved for custom UUID formats
      */
     case Custom = 8;
 
     /**
-     * Alias for {@see self::Time}
+     * Alias for {@see self::GregorianTime}
      */
-    public const V1 = self::Time;
+    public const V1 = self::GregorianTime;
 
     /**
      * Alias for {@see self::DceSecurity}
@@ -96,9 +96,9 @@ enum Version: int
     public const V5 = self::HashSha1;
 
     /**
-     * Alias for {@see self::ReorderedTime}
+     * Alias for {@see self::ReorderedGregorianTime}
      */
-    public const V6 = self::ReorderedTime;
+    public const V6 = self::ReorderedGregorianTime;
 
     /**
      * Alias for {@see self::UnixTime}
