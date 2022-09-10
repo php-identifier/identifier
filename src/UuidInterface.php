@@ -22,11 +22,28 @@ declare(strict_types=1);
 
 namespace Identifier;
 
+use Identifier\Uuid\Variant;
+use Identifier\Uuid\Version;
+
 /**
  * Describes the interface of a UUID
  */
 interface UuidInterface extends BinaryIdentifierInterface
 {
+    /**
+     * Returns the variant of this UUID, describing the layout of the UUID
+     *
+     * @link https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.1 RFC 4122, § 4.1.1
+     */
+    public function getVariant(): Variant;
+
+    /**
+     * Returns the version of this UUID, describing how the UUID was generated
+     *
+     * @link https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.3 RFC 4122, § 4.1.3
+     */
+    public function getVersion(): Version;
+
     /**
      * Returns a string representation of the identifier encoded as hexadecimal
      * characters
