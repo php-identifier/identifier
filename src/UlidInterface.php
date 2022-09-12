@@ -24,6 +24,11 @@ namespace Identifier;
 
 /**
  * Describes the interface of a ULID
+ *
+ * ULIDs are universally-unique, lexicographically-sortable identifiers,
+ * provided as an alternate for UUIDs.
+ *
+ * @link https://github.com/ulid/spec ULID specification
  */
 interface UlidInterface extends TimeBasedBinaryIdentifierInterface
 {

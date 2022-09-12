@@ -23,12 +23,13 @@ declare(strict_types=1);
 namespace Identifier;
 
 use JsonSerializable;
+use Stringable;
 
 /**
  * Describes the interface of an identifier that identifies an object or
  * class of objects
  */
-interface IdentifierInterface extends JsonSerializable
+interface IdentifierInterface extends JsonSerializable, Stringable
 {
     /**
      * Serializes the identifier to an array representation for storage
@@ -38,11 +39,6 @@ interface IdentifierInterface extends JsonSerializable
      * @return mixed[]
      */
     public function __serialize(): array;
-
-    /**
-     * Casts the identifier to a string representation
-     */
-    public function __toString(): string;
 
     /**
      * Converts the array representation returned by {@see __serialize()} into

@@ -26,7 +26,9 @@ use Identifier\Uuid\Variant;
 use Identifier\Uuid\Version;
 
 /**
- * Describes the interface of a UUID
+ * Describes the interface of a universally unique identifier (UUID)
+ *
+ * @link https://datatracker.ietf.org/doc/html/rfc4122 RFC 4122
  */
 interface UuidInterface extends BinaryIdentifierInterface
 {
