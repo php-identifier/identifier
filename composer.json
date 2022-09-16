@@ -72,6 +72,7 @@
         ],
         "dev:analyze:phpstan": "phpstan analyse --ansi",
         "dev:analyze:psalm": "psalm",
+        "dev:build:clean": "git clean -fX build/",
         "dev:lint": [
             "@dev:lint:syntax",
             "@dev:lint:style"
@@ -89,6 +90,7 @@
         "dev:analyze": "Runs all static analysis checks.",
         "dev:analyze:phpstan": "Runs the PHPStan static analyzer.",
         "dev:analyze:psalm": "Runs the Psalm static analyzer.",
+        "dev:build:clean": "Cleans the build/ directory.",
         "dev:lint": "Runs all linting checks.",
         "dev:lint:fix": "Auto-fixes coding standards issues, if possible.",
         "dev:lint:style": "Checks for coding standards issues.",
