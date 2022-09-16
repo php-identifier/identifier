@@ -20,7 +20,7 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Binary;
 
 use DateTimeInterface;
 

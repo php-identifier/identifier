@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Identifier\StaticAnalysis;
+namespace Identifier\StaticAnalysis\Binary;
 
-use Identifier\BinaryIdentifierFactoryInterface;
-use Identifier\BinaryIdentifierInterface;
+use Identifier\Binary\BinaryIdentifierFactoryInterface;
+use Identifier\Binary\BinaryIdentifierInterface;
 
 final class BinaryIdentifierFactoryTypes
 {

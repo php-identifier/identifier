@@ -20,10 +20,9 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Uuid;
 
-use Identifier\Uuid\Variant;
-use Identifier\Uuid\Version;
+use Identifier\Binary\BinaryIdentifierInterface;
 
 /**
  * Describes the interface of a universally unique identifier (UUID)

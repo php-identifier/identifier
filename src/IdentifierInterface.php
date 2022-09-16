@@ -57,10 +57,10 @@ interface IdentifierInterface extends JsonSerializable, Stringable
      * Implementations may choose to compare the identifier against any other
      * type, internally converting the value for the comparison. However, if an
      * implementation encounters a value it cannot compare, it must throw a
-     * {@see NotComparableExceptionInterface} exception.
+     * {@see Exception\NotComparableExceptionInterface} exception.
      *
-     * @throws NotComparableExceptionInterface The implementation is not able to
-     *     make comparisons with the other value provided.
+     * @throws Exception\NotComparableExceptionInterface The implementation is
+     *     not able to make comparisons with the other value provided.
      *
      * @psalm-return -1 | 0 | 1
      */
@@ -72,11 +72,11 @@ interface IdentifierInterface extends JsonSerializable, Stringable
      * Implementations may choose to evaluate equality of the identifier against
      * a value of any other type, internally converting the value for the
      * comparison. However, if an implementation encounters a value it cannot
-     * compare, it must throw a {@see NotComparableExceptionInterface}
+     * compare, it must throw a {@see Exception\NotComparableExceptionInterface}
      * exception.
      *
-     * @throws NotComparableExceptionInterface The implementation is not able to
-     *     make comparisons with the other value provided.
+     * @throws Exception\NotComparableExceptionInterface The implementation is
+     *     not able to make comparisons with the other value provided.
      */
     public function equals(mixed $other): bool;
 

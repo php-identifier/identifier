@@ -20,7 +20,9 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Integer;
+
+use Identifier\IdentifierFactoryInterface;
 
 /**
  * Describes the interface of a factory used to create integer identifiers

@@ -20,9 +20,10 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Ulid;
 
 use DateTimeInterface;
+use Identifier\Binary\TimeBasedBinaryIdentifierFactoryInterface;
 
 /**
  * Describes the interface of a factory used to create ULIDs

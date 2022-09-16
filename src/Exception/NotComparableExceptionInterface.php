@@ -20,11 +20,11 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Exception;
 
 /**
- * Describes the interface of a time-based UUID
+ * The identifier value is not comparable
  */
-interface TimeBasedUuidInterface extends TimeBasedBinaryIdentifierInterface, UuidInterface
+interface NotComparableExceptionInterface extends IdentifierExceptionInterface
 {
 }

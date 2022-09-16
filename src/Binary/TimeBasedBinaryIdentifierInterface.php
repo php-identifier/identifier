@@ -20,21 +20,21 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Binary;
+
+use DateTimeImmutable;
 
 /**
- * Describes the interface of an integer identifier
+ * Describes the interface of a time-based, binary-string identifier
+ *
+ * Time-based, binary-string identifiers have a timestamp embedded within the
+ * identifier value.
  */
-interface IntegerIdentifierInterface extends IdentifierInterface
+interface TimeBasedBinaryIdentifierInterface extends BinaryIdentifierInterface
 {
     /**
-     * Returns an integer representation of the identifier
-     *
-     * Implementations may choose to support integers greater than PHP_INT_MAX
-     * and less than PHP_INT_MIN. In this case, this method should return a
-     * numeric string.
-     *
-     * @return int | numeric-string
+     * Returns a PHP DateTimeImmutable representation of the timestamp
+     * embedded within this identifier
      */
-    public function toInteger(): int | string;
+    public function getDateTime(): DateTimeImmutable;
 }

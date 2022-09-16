@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Identifier\StaticAnalysis;
+namespace Identifier\StaticAnalysis\Uuid;
 
-use Identifier\UuidFactoryInterface;
-use Identifier\UuidInterface;
+use Identifier\Uuid\UuidFactoryInterface;
+use Identifier\Uuid\UuidInterface;
 
 final class UuidFactoryTypes
 {

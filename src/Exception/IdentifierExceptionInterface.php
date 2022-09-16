@@ -20,21 +20,13 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Exception;
 
-use DateTimeImmutable;
+use Throwable;
 
 /**
- * Describes the interface of a time-based, binary-string identifier
- *
- * Time-based, binary-string identifiers have a timestamp embedded within the
- * identifier value.
+ * Base interface representing generic exceptions for identifiers
  */
-interface TimeBasedBinaryIdentifierInterface extends BinaryIdentifierInterface
+interface IdentifierExceptionInterface extends Throwable
 {
-    /**
-     * Returns a PHP DateTimeImmutable representation of the timestamp
-     * embedded within this identifier
-     */
-    public function getDateTime(): DateTimeImmutable;
 }

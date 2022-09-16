@@ -20,9 +20,10 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Uuid;
 
 use DateTimeInterface;
+use Identifier\Binary\TimeBasedBinaryIdentifierFactoryInterface;
 
 /**
  * Describes the interface of a factory used to create time-based UUIDs
@@ -47,17 +48,8 @@ interface TimeBasedUuidFactoryInterface extends TimeBasedBinaryIdentifierFactory
      *
      * @param DateTimeInterface $dateTime The date from which to create a
      *     time-based UUID
-     * @param string | null $node A value to use for the UUID node field instead
-     *     of the implementation's default node value (which might be the system
-     *     node)
-     * @param int | null $clockSequence A custom clock sequence value to prevent
-     *     collisions
      */
-    public function createFromDateTime(
-        DateTimeInterface $dateTime,
-        ?string $node = null,
-        ?int $clockSequence = null,
-    ): TimeBasedUuidInterface;
+    public function createFromDateTime(DateTimeInterface $dateTime): TimeBasedUuidInterface;
 
     /**
      * Creates a new instance of a {@see TimeBasedUuidInterface} from the given

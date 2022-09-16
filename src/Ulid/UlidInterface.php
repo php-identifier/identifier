@@ -20,11 +20,27 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Ulid;
+
+use Identifier\Binary\TimeBasedBinaryIdentifierInterface;
 
 /**
- * The identifier value is not comparable
+ * Describes the interface of a ULID
+ *
+ * ULIDs are universally-unique, lexicographically-sortable identifiers,
+ * provided as an alternate for UUIDs.
+ *
+ * @link https://github.com/ulid/spec ULID specification
  */
-interface NotComparableExceptionInterface extends IdentifierExceptionInterface
+interface UlidInterface extends TimeBasedBinaryIdentifierInterface
 {
+    /**
+     * Returns a string representation of the identifier encoded with Douglas
+     * Crockford's Base32 algorithm
+     *
+     * @link https://www.crockford.com/base32.html Crockford's Base32 algorithm
+     *
+     * @return non-empty-string
+     */
+    public function toCrockfordBase32(): string;
 }

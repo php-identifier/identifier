@@ -20,7 +20,9 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
+namespace Identifier\Uuid;
+
+use Identifier\Binary\BinaryIdentifierFactoryInterface;
 
 /**
  * Describes the interface of a factory used to create universally unique
