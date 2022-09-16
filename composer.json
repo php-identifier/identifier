@@ -42,6 +42,11 @@
             "Identifier\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Identifier\\StaticAnalysis\\": "tests/static-analysis/"
+        }
+    },
     "config": {
         "allow-plugins": {
             "composer/package-versions-deprecated": true,

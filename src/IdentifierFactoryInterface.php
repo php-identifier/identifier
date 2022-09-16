@@ -46,9 +46,10 @@ interface IdentifierFactoryInterface
      * Creates a new instance of an {@see IdentifierInterface} from the
      * given integer representation of the identifier
      *
-     * @param int | string $integer This value may be an `int` if it falls
-     *     within the range of `PHP_INT_MIN` - `PHP_INT_MAX`; however, if it is
-     *     outside this range, it must be a string representation of the integer
+     * @param int | numeric-string $integer This value may be an `int` if it
+     *     falls within the range of `PHP_INT_MIN` - `PHP_INT_MAX`; however, if
+     *     it is outside this range, it must be a string representation of the
+     *     integer
      */
     public function createFromInteger(int | string $integer): IdentifierInterface;
 
