@@ -22,25 +22,22 @@ declare(strict_types=1);
 
 namespace Identifier\Ulid;
 
-use Identifier\Binary\TimeBasedBinaryIdentifierInterface;
+use DateTimeImmutable;
+use Identifier\Binary\BinaryIdentifierInterface;
 
 /**
  * Describes the interface of a ULID
  *
  * ULIDs are universally-unique, lexicographically-sortable identifiers,
- * provided as an alternate for UUIDs.
+ * provided as an alternative to UUIDs.
  *
  * @link https://github.com/ulid/spec ULID specification
  */
-interface UlidInterface extends TimeBasedBinaryIdentifierInterface
+interface UlidInterface extends BinaryIdentifierInterface
 {
     /**
-     * Returns a string representation of the identifier encoded with Douglas
-     * Crockford's Base32 algorithm
-     *
-     * @link https://www.crockford.com/base32.html Crockford's Base32 algorithm
-     *
-     * @return non-empty-string
+     * Returns a date-time representation of the timestamp
+     * embedded within this identifier
      */
-    public function toCrockfordBase32(): string;
+    public function getDateTime(): DateTimeImmutable;
 }

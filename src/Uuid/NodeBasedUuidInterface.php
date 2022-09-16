@@ -20,21 +20,25 @@
 
 declare(strict_types=1);
 
-namespace Identifier\Binary;
-
-use DateTimeImmutable;
+namespace Identifier\Uuid;
 
 /**
- * Describes the interface of a time-based, binary-string identifier
- *
- * Time-based, binary-string identifiers have a timestamp embedded within the
- * identifier value.
+ * Describes the interface of a UUID that includes a node identifier
+ * (or MAC address)
  */
-interface TimeBasedBinaryIdentifierInterface extends BinaryIdentifierInterface
+interface NodeBasedUuidInterface extends TimeBasedUuidInterface
 {
     /**
-     * Returns a PHP DateTimeImmutable representation of the timestamp
-     * embedded within this identifier
+     * Returns a string representation of the node (usually the host MAC
+     * address), encoded as hexadecimal characters
+     *
+     * If the node has the multicast bit set, this indicates it was randomly
+     * generated, rather than identifying a host machine.
+     *
+     * @link https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.6 RFC 4122: Node
+     * @link https://datatracker.ietf.org/doc/html/rfc4122#section-4.5 RFC 4122: Node IDs that Do Not Identify the Host
+     *
+     * @return non-empty-string
      */
-    public function getDateTime(): DateTimeImmutable;
+    public function getNode(): string;
 }

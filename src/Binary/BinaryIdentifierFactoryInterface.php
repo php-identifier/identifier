@@ -29,27 +29,34 @@ use Identifier\IdentifierFactoryInterface;
  */
 interface BinaryIdentifierFactoryInterface extends IdentifierFactoryInterface
 {
-    /**
-     * Creates a new instance of a {@see BinaryIdentifierInterface} with an
-     * auto-generated identifier
-     */
     public function create(): BinaryIdentifierInterface;
 
-    /**
-     * Creates a new instance of a {@see BinaryIdentifierInterface} from the
-     * given byte string representation of the identifier
-     */
-    public function createFromBytes(string $bytes): BinaryIdentifierInterface;
-
-    /**
-     * Creates a new instance of a {@see BinaryIdentifierInterface} from the
-     * given integer representation of the identifier
-     */
-    public function createFromInteger(int | string $integer): BinaryIdentifierInterface;
-
-    /**
-     * Creates a new instance of a {@see BinaryIdentifierInterface} from the
-     * given string representation of the identifier
-     */
     public function createFromString(string $identifier): BinaryIdentifierInterface;
+
+    /**
+     * Creates a new instance of an identifier from the given byte string representation
+     *
+     * @param string $identifier An octet string encoded according to the
+     *     specification for the type of identifier
+     */
+    public function createFromBytes(string $identifier): BinaryIdentifierInterface;
+
+    /**
+     * Creates a new instance of an identifier from the given hexadecimal string representation
+     *
+     * @param string $identifier A hexadecimal string representation of the identifier
+     */
+    public function createFromHexadecimal(string $identifier): BinaryIdentifierInterface;
+
+    /**
+     * Creates a new instance of an identifier from the given integer representation
+     *
+     * @param int | string $identifier This value may be an `int` if it
+     *     falls within the range of `PHP_INT_MIN` - `PHP_INT_MAX`; however, if
+     *     it is outside this range, it must be a string representation of the
+     *     integer
+     *
+     * @psalm-param int | numeric-string $identifier
+     */
+    public function createFromInteger(int | string $identifier): BinaryIdentifierInterface;
 }

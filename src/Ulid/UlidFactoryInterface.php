@@ -23,45 +23,32 @@ declare(strict_types=1);
 namespace Identifier\Ulid;
 
 use DateTimeInterface;
-use Identifier\Binary\TimeBasedBinaryIdentifierFactoryInterface;
+use Identifier\Binary\BinaryIdentifierFactoryInterface;
 
 /**
  * Describes the interface of a factory used to create ULIDs
  *
  * ULIDs are universally-unique, lexicographically-sortable identifiers,
- * provided as an alternate for UUIDs.
+ * provided as an alternative to UUIDs.
  *
  * @link https://github.com/ulid/spec ULID specification
  */
-interface UlidFactoryInterface extends TimeBasedBinaryIdentifierFactoryInterface
+interface UlidFactoryInterface extends BinaryIdentifierFactoryInterface
 {
-    /**
-     * Creates a new instance of a {@see UlidInterface} with an auto-generated
-     * identifier
-     */
     public function create(): UlidInterface;
 
-    /**
-     * Creates a new instance of a {@see UlidInterface} from the given byte
-     * string representation of the identifier
-     */
-    public function createFromBytes(string $bytes): UlidInterface;
+    public function createFromBytes(string $identifier): UlidInterface;
+
+    public function createFromHexadecimal(string $identifier): UlidInterface;
+
+    public function createFromInteger(int | string $identifier): UlidInterface;
+
+    public function createFromString(string $identifier): UlidInterface;
 
     /**
-     * Creates a new instance of a {@see UlidInterface} from the given
-     * {@see DateTimeInterface}
+     * Creates a new instance of an identifier from the given date-time
+     *
+     * @param DateTimeInterface $dateTime The date-time to use when creating the identifier
      */
     public function createFromDateTime(DateTimeInterface $dateTime): UlidInterface;
-
-    /**
-     * Creates a new instance of a {@see UlidInterface} from the given integer
-     * representation of the identifier
-     */
-    public function createFromInteger(int | string $integer): UlidInterface;
-
-    /**
-     * Creates a new instance of a {@see UlidInterface} from the given string
-     * representation of the identifier
-     */
-    public function createFromString(string $identifier): UlidInterface;
 }

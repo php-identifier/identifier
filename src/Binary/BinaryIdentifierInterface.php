@@ -40,6 +40,12 @@ interface BinaryIdentifierInterface extends IdentifierInterface
     public function toBytes(): string;
 
     /**
+     * Returns a string representation of the identifier encoded as hexadecimal
+     * characters
+     */
+    public function toHexadecimal(): string;
+
+    /**
      * Returns an integer representation of the identifier
      *
      * Implementations may choose to support binary identifiers greater than

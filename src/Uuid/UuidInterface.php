@@ -46,22 +46,6 @@ interface UuidInterface extends BinaryIdentifierInterface
     public function getVersion(): Version;
 
     /**
-     * Returns a string representation of the identifier encoded as hexadecimal
-     * characters
-     *
-     * @return non-empty-string
-     */
-    public function toHexadecimal(): string;
-
-    /**
-     * Returns the string standard representation of the UUID, as defined by
-     * RFC 4122
-     *
-     * @return non-empty-string
-     */
-    public function toRfc4122(): string;
-
-    /**
      * Returns the string standard representation of the UUID as a URN
      *
      * @link http://en.wikipedia.org/wiki/Uniform_Resource_Name Uniform Resource Name

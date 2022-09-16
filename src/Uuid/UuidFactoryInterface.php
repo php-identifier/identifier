@@ -32,27 +32,13 @@ use Identifier\Binary\BinaryIdentifierFactoryInterface;
  */
 interface UuidFactoryInterface extends BinaryIdentifierFactoryInterface
 {
-    /**
-     * Creates a new instance of a {@see UuidInterface} with an auto-generated
-     * identifier
-     */
     public function create(): UuidInterface;
 
-    /**
-     * Creates a new instance of a {@see UuidInterface} from the given byte
-     * string representation of the identifier
-     */
-    public function createFromBytes(string $bytes): UuidInterface;
+    public function createFromBytes(string $identifier): UuidInterface;
 
-    /**
-     * Creates a new instance of a {@see UuidInterface} from the given integer
-     * representation of the identifier
-     */
-    public function createFromInteger(int | string $integer): UuidInterface;
+    public function createFromHexadecimal(string $identifier): UuidInterface;
 
-    /**
-     * Creates a new instance of a {@see UuidInterface} from the given string
-     * representation of the identifier
-     */
+    public function createFromInteger(int | string $identifier): UuidInterface;
+
     public function createFromString(string $identifier): UuidInterface;
 }

@@ -29,27 +29,14 @@ use Identifier\IdentifierFactoryInterface;
  */
 interface IntegerIdentifierFactoryInterface extends IdentifierFactoryInterface
 {
-    /**
-     * Creates a new instance of an {@see IntegerIdentifierInterface} with an
-     * auto-generated identifier
-     */
     public function create(): IntegerIdentifierInterface;
 
-    /**
-     * Creates a new instance of an {@see IntegerIdentifierInterface} from the
-     * given byte string representation of the identifier
-     */
-    public function createFromBytes(string $bytes): IntegerIdentifierInterface;
-
-    /**
-     * Creates a new instance of an {@see IntegerIdentifierInterface} from the
-     * given integer representation of the identifier
-     */
-    public function createFromInteger(int | string $integer): IntegerIdentifierInterface;
-
-    /**
-     * Creates a new instance of an {@see IntegerIdentifierInterface} from the
-     * given string representation of the identifier
-     */
     public function createFromString(string $identifier): IntegerIdentifierInterface;
+
+    /**
+     * Creates a new instance of an identifier from the given integer representation
+     *
+     * @param int $identifier An integer representation of the identifier
+     */
+    public function createFromInteger(int $identifier): IntegerIdentifierInterface;
 }

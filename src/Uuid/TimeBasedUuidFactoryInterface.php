@@ -23,43 +23,26 @@ declare(strict_types=1);
 namespace Identifier\Uuid;
 
 use DateTimeInterface;
-use Identifier\Binary\TimeBasedBinaryIdentifierFactoryInterface;
 
 /**
  * Describes the interface of a factory used to create time-based UUIDs
  */
-interface TimeBasedUuidFactoryInterface extends TimeBasedBinaryIdentifierFactoryInterface
+interface TimeBasedUuidFactoryInterface extends UuidFactoryInterface
 {
-    /**
-     * Creates a new instance of a {@see TimeBasedUuidInterface} with an
-     * auto-generated identifier
-     */
     public function create(): TimeBasedUuidInterface;
 
-    /**
-     * Creates a new instance of a {@see TimeBasedUuidInterface} from the given
-     * byte string representation of the identifier
-     */
-    public function createFromBytes(string $bytes): TimeBasedUuidInterface;
+    public function createFromBytes(string $identifier): TimeBasedUuidInterface;
+
+    public function createFromHexadecimal(string $identifier): TimeBasedUuidInterface;
+
+    public function createFromInteger(int | string $identifier): TimeBasedUuidInterface;
+
+    public function createFromString(string $identifier): TimeBasedUuidInterface;
 
     /**
-     * Creates a new instance of a {@see TimeBasedUuidInterface} from the given
-     * {@see DateTimeInterface}
+     * Creates a new instance of an identifier from the given date-time
      *
-     * @param DateTimeInterface $dateTime The date from which to create a
-     *     time-based UUID
+     * @param DateTimeInterface $dateTime The date-time to use when creating the identifier
      */
     public function createFromDateTime(DateTimeInterface $dateTime): TimeBasedUuidInterface;
-
-    /**
-     * Creates a new instance of a {@see TimeBasedUuidInterface} from the given
-     * integer representation of the identifier
-     */
-    public function createFromInteger(int | string $integer): TimeBasedUuidInterface;
-
-    /**
-     * Creates a new instance of a {@see TimeBasedUuidInterface} from the given
-     * string representation of the identifier
-     */
-    public function createFromString(string $identifier): TimeBasedUuidInterface;
 }

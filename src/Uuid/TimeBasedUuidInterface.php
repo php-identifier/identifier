@@ -22,11 +22,16 @@ declare(strict_types=1);
 
 namespace Identifier\Uuid;
 
-use Identifier\Binary\TimeBasedBinaryIdentifierInterface;
+use DateTimeImmutable;
 
 /**
  * Describes the interface of a time-based UUID
  */
-interface TimeBasedUuidInterface extends TimeBasedBinaryIdentifierInterface, UuidInterface
+interface TimeBasedUuidInterface extends UuidInterface
 {
+    /**
+     * Returns a date-time representation of the timestamp
+     * embedded within this identifier
+     */
+    public function getDateTime(): DateTimeImmutable;
 }

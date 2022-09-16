@@ -31,12 +31,6 @@ interface IntegerIdentifierInterface extends IdentifierInterface
 {
     /**
      * Returns an integer representation of the identifier
-     *
-     * Implementations may choose to support integers greater than PHP_INT_MAX
-     * and less than PHP_INT_MIN. In this case, this method should return a
-     * numeric string.
-     *
-     * @return int | numeric-string
      */
-    public function toInteger(): int | string;
+    public function toInteger(): int;
 }

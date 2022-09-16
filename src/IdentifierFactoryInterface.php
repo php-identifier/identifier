@@ -28,36 +28,12 @@ namespace Identifier;
 interface IdentifierFactoryInterface
 {
     /**
-     * Creates a new instance of an {@see IdentifierInterface} with an
-     * auto-generated identifier
+     * Creates a new instance of an identifier
      */
     public function create(): IdentifierInterface;
 
     /**
-     * Creates a new instance of an {@see IdentifierInterface} from the
-     * given byte string representation of the identifier
-     *
-     * @param string $bytes An octet string encoded according to the
-     *     specification for the type of identifier
-     */
-    public function createFromBytes(string $bytes): IdentifierInterface;
-
-    /**
-     * Creates a new instance of an {@see IdentifierInterface} from the
-     * given integer representation of the identifier
-     *
-     * @param int | string $integer This value may be an `int` if it
-     *     falls within the range of `PHP_INT_MIN` - `PHP_INT_MAX`; however, if
-     *     it is outside this range, it must be a string representation of the
-     *     integer
-     *
-     * @psalm-param int | numeric-string $integer
-     */
-    public function createFromInteger(int | string $integer): IdentifierInterface;
-
-    /**
-     * Creates a new instance of an {@see IdentifierInterface} from the
-     * given string representation of the identifier
+     * Creates a new instance of an identifier from the given string representation
      *
      * @param string $identifier The string representation of the identifier is
      *     specific to the type of identifier and implementation; for example,
