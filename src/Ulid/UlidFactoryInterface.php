@@ -18,6 +18,7 @@ namespace Identifier\Ulid;
 
 use DateTimeInterface;
 use Identifier\Binary\BinaryIdentifierFactoryInterface;
+use Identifier\Exception\InvalidArgumentException;
 
 /**
  * Describes the interface of a factory used to create ULIDs
@@ -31,18 +32,37 @@ interface UlidFactoryInterface extends BinaryIdentifierFactoryInterface
 {
     public function create(): UlidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromBytes(string $identifier): UlidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromHexadecimal(string $identifier): UlidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromInteger(int | string $identifier): UlidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromString(string $identifier): UlidInterface;
 
     /**
      * Creates a new instance of an identifier from the given date-time
      *
      * @param DateTimeInterface $dateTime The date-time to use when creating the identifier
+     *
+     * @throws InvalidArgumentException MUST throw if the $dateTime is not a
+     *     legal value
      */
     public function createFromDateTime(DateTimeInterface $dateTime): UlidInterface;
 }

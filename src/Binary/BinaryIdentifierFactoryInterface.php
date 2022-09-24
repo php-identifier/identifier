@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace Identifier\Binary;
 
+use Identifier\Exception\InvalidArgumentException;
 use Identifier\IdentifierFactoryInterface;
 
 /**
@@ -25,6 +26,10 @@ interface BinaryIdentifierFactoryInterface extends IdentifierFactoryInterface
 {
     public function create(): BinaryIdentifierInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromString(string $identifier): BinaryIdentifierInterface;
 
     /**
@@ -32,6 +37,9 @@ interface BinaryIdentifierFactoryInterface extends IdentifierFactoryInterface
      *
      * @param string $identifier An octet string encoded according to the
      *     specification for the type of identifier
+     *
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
      */
     public function createFromBytes(string $identifier): BinaryIdentifierInterface;
 
@@ -39,6 +47,9 @@ interface BinaryIdentifierFactoryInterface extends IdentifierFactoryInterface
      * Creates a new instance of an identifier from the given hexadecimal string representation
      *
      * @param string $identifier A hexadecimal string representation of the identifier
+     *
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
      */
     public function createFromHexadecimal(string $identifier): BinaryIdentifierInterface;
 
@@ -49,6 +60,9 @@ interface BinaryIdentifierFactoryInterface extends IdentifierFactoryInterface
      *     falls within the range of `PHP_INT_MIN` - `PHP_INT_MAX`; however, if
      *     it is outside this range, it must be a string representation of the
      *     integer
+     *
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
      *
      * @psalm-param int | numeric-string $identifier
      */

@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace Identifier\Uuid;
 
 use DateTimeInterface;
+use Identifier\Exception\InvalidArgumentException;
 
 /**
  * Describes the interface of a factory used to create time-based UUIDs
@@ -25,18 +26,37 @@ interface TimeBasedUuidFactoryInterface extends UuidFactoryInterface
 {
     public function create(): TimeBasedUuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromBytes(string $identifier): TimeBasedUuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromHexadecimal(string $identifier): TimeBasedUuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromInteger(int | string $identifier): TimeBasedUuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromString(string $identifier): TimeBasedUuidInterface;
 
     /**
      * Creates a new instance of an identifier from the given date-time
      *
      * @param DateTimeInterface $dateTime The date-time to use when creating the identifier
+     *
+     * @throws InvalidArgumentException MUST throw if the $dateTime is not a
+     *     legal value
      */
     public function createFromDateTime(DateTimeInterface $dateTime): TimeBasedUuidInterface;
 }

@@ -16,6 +16,8 @@ declare(strict_types=1);
 
 namespace Identifier;
 
+use Identifier\Exception\InvalidArgumentException;
+
 /**
  * Describes the interface of a factory used to create identifiers
  */
@@ -33,6 +35,9 @@ interface IdentifierFactoryInterface
      *     specific to the type of identifier and implementation; for example,
      *     UUIDs use a specific format, while other identifiers may use other
      *     formats
+     *
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
      */
     public function createFromString(string $identifier): IdentifierInterface;
 }

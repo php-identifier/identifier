@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace Identifier\Integer;
 
+use Identifier\Exception\InvalidArgumentException;
 use Identifier\IdentifierFactoryInterface;
 
 /**
@@ -25,12 +26,19 @@ interface IntegerIdentifierFactoryInterface extends IdentifierFactoryInterface
 {
     public function create(): IntegerIdentifierInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromString(string $identifier): IntegerIdentifierInterface;
 
     /**
      * Creates a new instance of an identifier from the given integer representation
      *
      * @param int $identifier An integer representation of the identifier
+     *
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
      */
     public function createFromInteger(int $identifier): IntegerIdentifierInterface;
 }

@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace Identifier\Uuid;
 
 use DateTimeInterface;
+use Identifier\Exception\InvalidArgumentException;
 
 /**
  * Describes the interface of a factory used to create time-based UUIDs that
@@ -26,12 +27,28 @@ interface NodeBasedUuidFactoryInterface extends TimeBasedUuidFactoryInterface
 {
     public function create(): NodeBasedUuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromBytes(string $identifier): NodeBasedUuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromHexadecimal(string $identifier): NodeBasedUuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromInteger(int | string $identifier): NodeBasedUuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromString(string $identifier): NodeBasedUuidInterface;
 
     /**
@@ -39,6 +56,9 @@ interface NodeBasedUuidFactoryInterface extends TimeBasedUuidFactoryInterface
      * @param string | null $node An optional hexadecimal string node to use
      *     when creating the identifier; if not provided, the implementation
      *     may use the host MAC address as the node
+     *
+     * @throws InvalidArgumentException MUST throw if the $dateTime or $node are
+     *     not legal values
      */
     public function createFromDateTime(DateTimeInterface $dateTime, ?string $node = null): NodeBasedUuidInterface;
 
@@ -54,6 +74,9 @@ interface NodeBasedUuidFactoryInterface extends TimeBasedUuidFactoryInterface
      * @param DateTimeInterface | null $dateTime An optional date-time to use
      *     when creating the identifier; if not provided, the implementation
      *     should use the current date-time
+     *
+     * @throws InvalidArgumentException MUST throw if the $node or $dateTime are
+     *     not legal values
      */
     public function createFromNode(string $node, ?DateTimeInterface $dateTime = null): NodeBasedUuidInterface;
 }

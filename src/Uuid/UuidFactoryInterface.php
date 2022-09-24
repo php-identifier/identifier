@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace Identifier\Uuid;
 
 use Identifier\Binary\BinaryIdentifierFactoryInterface;
+use Identifier\Exception\InvalidArgumentException;
 
 /**
  * Describes the interface of a factory used to create universally unique
@@ -28,11 +29,27 @@ interface UuidFactoryInterface extends BinaryIdentifierFactoryInterface
 {
     public function create(): UuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromBytes(string $identifier): UuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromHexadecimal(string $identifier): UuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromInteger(int | string $identifier): UuidInterface;
 
+    /**
+     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     *     legal value
+     */
     public function createFromString(string $identifier): UuidInterface;
 }

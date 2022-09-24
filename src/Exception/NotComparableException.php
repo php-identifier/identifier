@@ -16,11 +16,9 @@ declare(strict_types=1);
 
 namespace Identifier\Exception;
 
-use Throwable;
-
 /**
- * Base interface representing generic exceptions for identifiers
+ * The identifier value is not comparable
  */
-interface IdentifierExceptionInterface extends Throwable
+interface NotComparableException extends IdentifierException
 {
 }
