@@ -24,6 +24,8 @@ use Identifier\Exception\InvalidArgumentException;
  * identifiers (UUIDs)
  *
  * @link https://datatracker.ietf.org/doc/html/rfc4122 RFC 4122
+ *
+ * @psalm-immutable
  */
 interface UuidFactoryInterface extends BinaryIdentifierFactoryInterface
 {

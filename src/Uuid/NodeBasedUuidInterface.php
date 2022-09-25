@@ -19,6 +19,8 @@ namespace Identifier\Uuid;
 /**
  * Describes the interface of a UUID that includes a node identifier
  * (or MAC address)
+ *
+ * @psalm-immutable
  */
 interface NodeBasedUuidInterface extends TimeBasedUuidInterface
 {

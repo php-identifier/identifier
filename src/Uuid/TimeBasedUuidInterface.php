@@ -20,6 +20,8 @@ use DateTimeImmutable;
 
 /**
  * Describes the interface of a time-based UUID
+ *
+ * @psalm-immutable
  */
 interface TimeBasedUuidInterface extends UuidInterface
 {

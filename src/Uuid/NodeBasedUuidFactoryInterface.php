@@ -22,6 +22,8 @@ use Identifier\Exception\InvalidArgumentException;
 /**
  * Describes the interface of a factory used to create time-based UUIDs that
  * include a node identifier (or MAC address)
+ *
+ * @psalm-immutable
  */
 interface NodeBasedUuidFactoryInterface extends TimeBasedUuidFactoryInterface
 {

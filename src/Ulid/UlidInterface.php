@@ -26,6 +26,8 @@ use Identifier\Binary\BinaryIdentifierInterface;
  * provided as an alternative to UUIDs.
  *
  * @link https://github.com/ulid/spec ULID specification
+ *
+ * @psalm-immutable
  */
 interface UlidInterface extends BinaryIdentifierInterface
 {

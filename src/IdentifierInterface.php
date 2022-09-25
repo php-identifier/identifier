@@ -22,6 +22,8 @@ use Stringable;
 /**
  * Describes the interface of an identifier that identifies an object or
  * class of objects
+ *
+ * @psalm-immutable
  */
 interface IdentifierInterface extends JsonSerializable, Stringable
 {

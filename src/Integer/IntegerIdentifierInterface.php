@@ -20,6 +20,8 @@ use Identifier\IdentifierInterface;
 
 /**
  * Describes the interface of an integer identifier
+ *
+ * @psalm-immutable
  */
 interface IntegerIdentifierInterface extends IdentifierInterface
 {

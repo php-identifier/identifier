@@ -22,6 +22,8 @@ use Identifier\Binary\BinaryIdentifierInterface;
  * Describes the interface of a universally unique identifier (UUID)
  *
  * @link https://datatracker.ietf.org/doc/html/rfc4122 RFC 4122
+ *
+ * @psalm-immutable
  */
 interface UuidInterface extends BinaryIdentifierInterface
 {

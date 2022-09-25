@@ -21,6 +21,8 @@ use Identifier\IdentifierFactoryInterface;
 
 /**
  * Describes the interface of a factory used to create binary identifiers
+ *
+ * @psalm-immutable
  */
 interface BinaryIdentifierFactoryInterface extends IdentifierFactoryInterface
 {

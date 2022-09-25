@@ -25,6 +25,8 @@ use Identifier\IdentifierInterface;
  * identifier overflows the system limitations for maximum/minimum integers.
  * For example, UUIDs and ULIDs, both 128-bit integers, are binary-string
  * identifiers.
+ *
+ * @psalm-immutable
  */
 interface BinaryIdentifierInterface extends IdentifierInterface
 {
