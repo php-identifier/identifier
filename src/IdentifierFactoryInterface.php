@@ -20,8 +20,6 @@ use Identifier\Exception\InvalidArgumentException;
 
 /**
  * Describes the interface of a factory used to create identifiers
- *
- * @psalm-immutable
  */
 interface IdentifierFactoryInterface
 {

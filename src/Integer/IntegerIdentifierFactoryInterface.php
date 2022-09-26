@@ -21,8 +21,6 @@ use Identifier\IdentifierFactoryInterface;
 
 /**
  * Describes the interface of a factory used to create integer identifiers
- *
- * @psalm-immutable
  */
 interface IntegerIdentifierFactoryInterface extends IdentifierFactoryInterface
 {

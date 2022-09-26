@@ -27,8 +27,6 @@ use Identifier\Exception\InvalidArgumentException;
  * provided as an alternative to UUIDs.
  *
  * @link https://github.com/ulid/spec ULID specification
- *
- * @psalm-immutable
  */
 interface UlidFactoryInterface extends BinaryIdentifierFactoryInterface
 {

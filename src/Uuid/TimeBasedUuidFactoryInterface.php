@@ -21,8 +21,6 @@ use Identifier\Exception\InvalidArgumentException;
 
 /**
  * Describes the interface of a factory used to create time-based UUIDs
- *
- * @psalm-immutable
  */
 interface TimeBasedUuidFactoryInterface extends UuidFactoryInterface
 {
