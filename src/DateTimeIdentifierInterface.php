@@ -14,20 +14,17 @@
 
 declare(strict_types=1);
 
-namespace Identifier\Uuid;
+namespace Identifier;
 
 use DateTimeImmutable;
 
 /**
- * Describes the interface of a time-based UUID
- *
- * @psalm-immutable
+ * Describes the interface of an identifier based on a date-time value
  */
-interface TimeBasedUuidInterface extends UuidInterface
+interface DateTimeIdentifierInterface extends IdentifierInterface
 {
     /**
-     * Returns a date-time representation of the timestamp
-     * embedded within this identifier
+     * Returns a date-time representation of the timestamp associated with this identifier
      */
     public function getDateTime(): DateTimeImmutable;
 }

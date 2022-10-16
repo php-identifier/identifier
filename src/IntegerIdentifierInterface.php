@@ -14,19 +14,21 @@
 
 declare(strict_types=1);
 
-namespace Identifier\Integer;
-
-use Identifier\IdentifierInterface;
+namespace Identifier;
 
 /**
  * Describes the interface of an integer identifier
- *
- * @psalm-immutable
  */
 interface IntegerIdentifierInterface extends IdentifierInterface
 {
     /**
      * Returns an integer representation of the identifier
+     *
+     * Implementations MAY support identifiers greater than PHP_INT_MAX and less
+     * than PHP_INT_MIN. In this case, this method SHOULD return a numeric
+     * string.
+     *
+     * @return int | numeric-string
      */
-    public function toInteger(): int;
+    public function toInteger(): int | string;
 }

@@ -17,9 +17,4 @@ final class IdentifierFactoryTypes
     {
         return $this->factory->create();
     }
-
-    public function createsIdentifierFromString(string $identifier): IdentifierInterface
-    {
-        return $this->factory->createFromString($identifier);
-    }
 }
