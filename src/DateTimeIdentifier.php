@@ -16,18 +16,15 @@ declare(strict_types=1);
 
 namespace Identifier;
 
+use DateTimeImmutable;
+
 /**
- * Describes the interface of a binary-string identifier
- *
- * Binary-string identifiers are useful especially when the size of the
- * identifier overflows the system limitations for maximum/minimum integers.
- * For example, UUIDs and ULIDs, both 128-bit integers, are binary-string
- * identifiers.
+ * Describes the interface of an identifier based on a date-time value
  */
-interface BinaryIdentifierInterface extends IdentifierInterface
+interface DateTimeIdentifier extends Identifier
 {
     /**
-     * Returns the identifier as a raw byte string
+     * Returns a date-time representation of the timestamp associated with this identifier
      */
-    public function toBytes(): string;
+    public function getDateTime(): DateTimeImmutable;
 }

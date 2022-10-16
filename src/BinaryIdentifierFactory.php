@@ -19,9 +19,9 @@ namespace Identifier;
 /**
  * Describes the interface of a factory used to create binary identifiers
  */
-interface BinaryIdentifierFactoryInterface extends IdentifierFactoryInterface
+interface BinaryIdentifierFactory extends IdentifierFactory
 {
-    public function create(): BinaryIdentifierInterface;
+    public function create(): BinaryIdentifier;
 
     /**
      * Creates a new instance of an identifier from the given byte string representation
@@ -29,8 +29,8 @@ interface BinaryIdentifierFactoryInterface extends IdentifierFactoryInterface
      * @param string $identifier An octet string encoded according to the
      *     specification for the type of identifier
      *
-     * @throws Exception\InvalidArgumentException MUST throw if the $identifier
-     *     is not a legal value
+     * @throws Exception\InvalidArgument MUST throw if the $identifier is not a
+     *     legal value
      */
-    public function createFromBytes(string $identifier): BinaryIdentifierInterface;
+    public function createFromBytes(string $identifier): BinaryIdentifier;
 }

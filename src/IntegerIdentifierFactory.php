@@ -19,9 +19,9 @@ namespace Identifier;
 /**
  * Describes the interface of a factory used to create integer identifiers
  */
-interface IntegerIdentifierFactoryInterface extends IdentifierFactoryInterface
+interface IntegerIdentifierFactory extends IdentifierFactory
 {
-    public function create(): IntegerIdentifierInterface;
+    public function create(): IntegerIdentifier;
 
     /**
      * Creates a new instance of an identifier from the given integer representation
@@ -29,17 +29,17 @@ interface IntegerIdentifierFactoryInterface extends IdentifierFactoryInterface
      * Implementations MAY support identifiers greater than PHP_INT_MAX and less
      * than PHP_INT_MIN. In this case, this method SHOULD accept a numeric
      * string. If the implementation does not support string integers, it SHOULD
-     * throw an {@see Exception\InvalidArgumentException} exception.
+     * throw an {@see Exception\InvalidArgument} exception.
      *
      * @param int | string $identifier This value may be an `int` if it
      *     falls within the range of `PHP_INT_MIN` - `PHP_INT_MAX`; however, if
      *     it is outside this range, it must be a string representation of the
      *     integer
      *
-     * @throws Exception\InvalidArgumentException MUST throw if the $identifier
+     * @throws Exception\InvalidArgument MUST throw if the $identifier
      *     is not a legal value
      *
      * @psalm-param int | numeric-string $identifier
      */
-    public function createFromInteger(int | string $identifier): IntegerIdentifierInterface;
+    public function createFromInteger(int | string $identifier): IntegerIdentifier;
 }

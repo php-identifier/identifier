@@ -17,18 +17,17 @@ declare(strict_types=1);
 namespace Identifier;
 
 /**
- * Describes the interface of an integer identifier
+ * Describes the interface of a binary-string identifier
+ *
+ * Binary-string identifiers are useful especially when the size of the
+ * identifier overflows the system limitations for maximum/minimum integers.
+ * For example, UUIDs and ULIDs, both 128-bit integers, are binary-string
+ * identifiers.
  */
-interface IntegerIdentifierInterface extends IdentifierInterface
+interface BinaryIdentifier extends Identifier
 {
     /**
-     * Returns an integer representation of the identifier
-     *
-     * Implementations MAY support identifiers greater than PHP_INT_MAX and less
-     * than PHP_INT_MIN. In this case, this method SHOULD return a numeric
-     * string.
-     *
-     * @return int | numeric-string
+     * Returns the identifier as a raw byte string
      */
-    public function toInteger(): int | string;
+    public function toBytes(): string;
 }

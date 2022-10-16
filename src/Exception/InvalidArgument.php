@@ -14,17 +14,11 @@
 
 declare(strict_types=1);
 
-namespace Identifier;
-
-use DateTimeImmutable;
+namespace Identifier\Exception;
 
 /**
- * Describes the interface of an identifier based on a date-time value
+ * The argument passed is invalid
  */
-interface DateTimeIdentifierInterface extends IdentifierInterface
+interface InvalidArgument extends IdentifierException
 {
-    /**
-     * Returns a date-time representation of the timestamp associated with this identifier
-     */
-    public function getDateTime(): DateTimeImmutable;
 }

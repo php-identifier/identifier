@@ -17,12 +17,18 @@ declare(strict_types=1);
 namespace Identifier;
 
 /**
- * Describes the interface of a factory used to create identifiers
+ * Describes the interface of an integer identifier
  */
-interface IdentifierFactoryInterface
+interface IntegerIdentifier extends Identifier
 {
     /**
-     * Creates a new instance of an identifier
+     * Returns an integer representation of the identifier
+     *
+     * Implementations MAY support identifiers greater than PHP_INT_MAX and less
+     * than PHP_INT_MIN. In this case, this method SHOULD return a numeric
+     * string.
+     *
+     * @psalm-return int | numeric-string
      */
-    public function create(): IdentifierInterface;
+    public function toInteger(): int | string;
 }

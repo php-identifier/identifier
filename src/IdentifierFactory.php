@@ -14,11 +14,15 @@
 
 declare(strict_types=1);
 
-namespace Identifier\Exception;
+namespace Identifier;
 
 /**
- * The identifier value is not comparable
+ * Describes the interface of a factory used to create identifiers
  */
-interface NotComparableException extends IdentifierException
+interface IdentifierFactory
 {
+    /**
+     * Creates a new instance of an identifier
+     */
+    public function create(): Identifier;
 }

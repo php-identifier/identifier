@@ -16,12 +16,12 @@ declare(strict_types=1);
 
 namespace Identifier;
 
-use Identifier\Exception\InvalidArgumentException;
+use Identifier\Exception\InvalidArgument;
 
 /**
  * Describes the interface of a factory used to create string identifiers
  */
-interface StringIdentifierFactoryInterface extends IdentifierFactoryInterface
+interface StringIdentifierFactory extends IdentifierFactory
 {
     /**
      * Creates a new instance of an identifier from the given string representation
@@ -31,8 +31,8 @@ interface StringIdentifierFactoryInterface extends IdentifierFactoryInterface
      *     UUIDs use a specific format, while other identifiers may use other
      *     formats
      *
-     * @throws InvalidArgumentException MUST throw if the $identifier is not a
+     * @throws InvalidArgument MUST throw if the $identifier is not a
      *     legal value
      */
-    public function createFromString(string $identifier): IdentifierInterface;
+    public function createFromString(string $identifier): Identifier;
 }

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Identifier\StaticAnalysis;
 
-use Identifier\IdentifierFactoryInterface;
-use Identifier\IdentifierInterface;
+use Identifier\Identifier;
+use Identifier\IdentifierFactory;
 
 final class IdentifierFactoryTypes
 {
-    public function __construct(private readonly IdentifierFactoryInterface $factory)
+    public function __construct(private readonly IdentifierFactory $factory)
     {
     }
 
-    public function createsIdentifier(): IdentifierInterface
+    public function createsIdentifier(): Identifier
     {
         return $this->factory->create();
     }

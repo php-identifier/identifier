@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Identifier\StaticAnalysis;
 
-use Identifier\BinaryIdentifierFactoryInterface;
-use Identifier\BinaryIdentifierInterface;
+use Identifier\BinaryIdentifier;
+use Identifier\BinaryIdentifierFactory;
 
 final class BinaryIdentifierFactoryTypes
 {
-    public function __construct(private readonly BinaryIdentifierFactoryInterface $factory)
+    public function __construct(private readonly BinaryIdentifierFactory $factory)
     {
     }
 
-    public function createsIdentifier(): BinaryIdentifierInterface
+    public function createsIdentifier(): BinaryIdentifier
     {
         return $this->factory->create();
     }
 
-    public function createsIdentifierFromBytes(string $bytes): BinaryIdentifierInterface
+    public function createsIdentifierFromBytes(string $bytes): BinaryIdentifier
     {
         return $this->factory->createFromBytes($bytes);
     }

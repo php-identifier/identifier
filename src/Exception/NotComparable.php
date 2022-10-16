@@ -17,8 +17,8 @@ declare(strict_types=1);
 namespace Identifier\Exception;
 
 /**
- * The argument passed is invalid
+ * The identifier value is not comparable
  */
-interface InvalidArgumentException extends IdentifierException
+interface NotComparable extends IdentifierException
 {
 }
