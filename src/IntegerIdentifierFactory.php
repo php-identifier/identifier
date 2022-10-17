@@ -36,8 +36,7 @@ interface IntegerIdentifierFactory extends IdentifierFactory
      *     it is outside this range, it must be a string representation of the
      *     integer
      *
-     * @throws Exception\InvalidArgument MUST throw if the $identifier
-     *     is not a legal value
+     * @throws Exception\InvalidArgument MUST throw if $identifier is not a legal value
      *
      * @psalm-param int | numeric-string $identifier
      */

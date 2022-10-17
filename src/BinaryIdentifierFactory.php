@@ -29,8 +29,7 @@ interface BinaryIdentifierFactory extends IdentifierFactory
      * @param string $identifier An octet string encoded according to the
      *     specification for the type of identifier
      *
-     * @throws Exception\InvalidArgument MUST throw if the $identifier is not a
-     *     legal value
+     * @throws Exception\InvalidArgument MUST throw if $identifier is not a legal value
      */
     public function createFromBytes(string $identifier): BinaryIdentifier;
 }

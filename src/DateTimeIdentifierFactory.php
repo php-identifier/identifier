@@ -31,8 +31,7 @@ interface DateTimeIdentifierFactory extends IdentifierFactory
      *
      * @param DateTimeInterface $dateTime The date-time to use when creating the identifier
      *
-     * @throws Exception\InvalidArgument MUST throw if the $identifier
-     *     is not a legal value
+     * @throws Exception\InvalidArgument MUST throw if $dateTime is not a legal value
      */
     public function createFromDateTime(DateTimeInterface $dateTime): DateTimeIdentifier;
 }
