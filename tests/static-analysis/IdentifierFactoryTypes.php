@@ -9,7 +9,7 @@ use Identifier\IdentifierFactory;
 
 final class IdentifierFactoryTypes
 {
-    public function __construct(private readonly IdentifierFactory $factory)
+    public function __construct(private IdentifierFactory $factory)
     {
     }
 

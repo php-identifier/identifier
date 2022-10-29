@@ -9,7 +9,7 @@ use Identifier\BinaryIdentifierFactory;
 
 final class BinaryIdentifierFactoryTypes
 {
-    public function __construct(private readonly BinaryIdentifierFactory $factory)
+    public function __construct(private BinaryIdentifierFactory $factory)
     {
     }
 
