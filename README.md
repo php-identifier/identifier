@@ -1,7 +1,7 @@
 <h1 align="center">identifier/identifier</h1>
 
 <p align="center">
-    <strong>Common interfaces for identifiers</strong>
+    <strong>Common Interfaces and Factories for Identifiers</strong>
 </p>
 
 <!--
@@ -71,15 +71,15 @@ contribution of external security researchers. If you believe you've found a
 security issue in software that is maintained in this repository, please read
 [SECURITY.md](SECURITY.md) for instructions on submitting a vulnerability report.
 
+## Public Domain Dedication
 
-
-
-
-
-## Copyright and License
-
-The identifier/identifier library is copyright © [Ben Ramsey](https://benramsey.com)
-and licensed for use under the terms of the
-MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
-
-
+<p xmlns:dct="https://purl.org/dc/terms/">
+    To the extent possible under law,
+    <span resource="[_:publisher]" rel="dct:publisher"><span property="dct:title">Ben Ramsey</span></span>
+    has waived all copyright and related or neighboring rights to
+    <span property="dct:title">Common Interfaces and Factories for Identifiers</span>.
+    <br><br>
+    <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="https://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0">
+    </a>
+</p>
