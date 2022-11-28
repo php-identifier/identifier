@@ -1,20 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Identifier;
 
-/**
- * Describes the interface of an integer identifier
- */
 interface IntegerIdentifier extends Identifier
 {
     /**
      * Returns an integer representation of the identifier
      *
-     * Implementations MAY support identifiers greater than PHP_INT_MAX and less
-     * than PHP_INT_MIN. In this case, this method SHOULD return a numeric
-     * string.
+     * @throws Exception\OutOfRange MUST throw if the implementation does
+     *     not support integers outside the range of PHP_INT_MIN and
+     *     PHP_INT_MAX and the identifier evaluates to an integer outside
+     *     this range
      *
      * @psalm-return int | numeric-string
      */
