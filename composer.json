@@ -27,7 +27,7 @@
         "ramsey/coding-standard": "^2.0",
         "ramsey/conventional-commits": "^1.3",
         "roave/security-advisories": "dev-latest",
-        "vimeo/psalm": "^4.27"
+        "vimeo/psalm": "^5.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
