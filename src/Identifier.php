@@ -23,6 +23,8 @@ interface Identifier
 
     /**
      * Returns a string representation of the identifier
+     *
+     * @return non-empty-string
      */
     public function toString(): string;
 }
