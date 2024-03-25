@@ -36,7 +36,7 @@ jobs:
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@2.2.0"
+        uses: "ramsey/composer-install@3.0.0"
 
       - name: "Check syntax (php-parallel-lint)"
         shell: "bash"
@@ -60,7 +60,7 @@ jobs:
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@2.2.0"
+        uses: "ramsey/composer-install@3.0.0"
 
       - name: "Statically analyze code (PHPStan)"
         shell: "bash"
@@ -85,7 +85,7 @@ jobs:
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@2.2.0"
+        uses: "ramsey/composer-install@3.0.0"
 
       - name: "Analyze security of code (Psalm)"
         shell: "bash"
