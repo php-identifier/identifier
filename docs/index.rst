@@ -534,7 +534,8 @@ Providers
 =========
 
 Packages that provide an identifier/identifier implementation identify themselves
-by specifying the ``provide`` property in ``composer.json``. For example:
+by specifying the ``provide`` property in ``composer.json`` with the package name
+``"identifier/identifier-implementation"``. For example:
 
 .. code-block:: json
 
