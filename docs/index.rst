@@ -11,7 +11,7 @@
     * - Updated
       - |today|
     * - Authors
-      - \B. Ramsey
+      - Ben Ramsey
 
 ===============================================
 Common Interfaces and Factories for Identifiers
@@ -197,23 +197,25 @@ etc.).
         public function toString(): string;
     }
 
-BinaryIdentifier
-~~~~~~~~~~~~~~~~
+BytesIdentifier
+~~~~~~~~~~~~~~~
 
-A binary identifier is an identifier that is based on arbitrary binary data. The
+A bytes identifier is an identifier that is based on arbitrary binary data. The
 ``toBytes()`` method MUST return the byte string representation of the
 identifier.
 
-Binary identifiers are useful especially when the size of the identifier
+Bytes identifiers are useful especially when the size of the identifier
 overflows the system limitations for maximum or minimum integers. For example,
-UUIDs and ULIDs, both 128-bit integers, may be represented as binary
-identifiers.
+UUIDs and ULIDs, both 128-bit integers, may be represented as bytes identifiers.
 
 .. code-block:: php
 
     namespace Identifier;
 
-    interface BinaryIdentifier extends Identifier
+    /**
+     * An identifier based on arbitrary binary data
+     */
+    interface BytesIdentifier extends Identifier
     {
         /**
          * Returns the identifier as a raw byte string
@@ -297,19 +299,22 @@ Descendants of ``IdentifierFactory`` MAY specify a narrower return type for the
         public function create(): Identifier;
     }
 
-BinaryIdentifierFactory
-~~~~~~~~~~~~~~~~~~~~~~~
+BytesIdentifierFactory
+~~~~~~~~~~~~~~~~~~~~~~
 
-``BinaryIdentifierFactory`` defines a common interface for factories that create
+``BytesIdentifierFactory`` defines a common interface for factories that create
 identifiers from raw byte strings.
 
 .. code-block:: php
 
     namespace Identifier;
 
-    interface BinaryIdentifierFactory extends IdentifierFactory
+    /**
+     * Creates identifiers based on arbitrary binary data
+     */
+    interface BytesIdentifierFactory extends IdentifierFactory
     {
-        public function create(): BinaryIdentifier;
+        public function create(): BytesIdentifier;
 
         /**
          * Creates a new instance of an identifier from the given byte string
@@ -321,7 +326,7 @@ identifiers from raw byte strings.
          * @throws Exception\InvalidArgument MUST throw if $identifier is not a
          *     legal value
          */
-        public function createFromBytes(string $identifier): BinaryIdentifier;
+        public function createFromBytes(string $identifier): BytesIdentifier;
     }
 
 DateTimeIdentifierFactory
