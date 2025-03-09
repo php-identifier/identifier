@@ -11,7 +11,7 @@
     * - Updated
       - |today|
     * - Authors
-      - Ben Ramsey
+      - Ben Ramsey <ben@ramsey.dev>
 
 ===============================================
 Common Interfaces and Factories for Identifiers
@@ -530,6 +530,22 @@ values for ``IntegerIdentifier::toInteger()``.
     {
     }
 
+Providers
+=========
+
+Packages that provide an identifier/identifier implementation identify themselves
+by specifying the ``provide`` property in ``composer.json``. For example:
+
+.. code-block:: json
+
+    {
+        "provide": {
+            "identifier/identifier-implementation": "*"
+        }
+    }
+
+You may `find these packages on Packagist`_.
+
 References
 ==========
 
@@ -553,7 +569,7 @@ Author's Addresses
 ==================
 
 | **Ben Ramsey**
-| Email: <ben@benramsey.com>
+| Email: <ben@ramsey.dev>
 
 Public Domain Dedication
 ========================
@@ -570,3 +586,6 @@ Public Domain Dedication
         <img src="https://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0">
         </a>
     </p>
+
+
+.. _find these packages on Packagist: https://packagist.org/providers/identifier/identifier-implementation
