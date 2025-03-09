@@ -27,16 +27,16 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout repository"
-        uses: "actions/checkout@v4.2.2"
+        uses: "actions/checkout@v4"
 
       - name: "Install PHP"
-        uses: "shivammathur/setup-php@2.32.0"
+        uses: "shivammathur/setup-php@v2"
         with:
-          php-version: "8.0"
+          php-version: "latest"
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@3.0.0"
+        uses: "ramsey/composer-install@v3"
 
       - name: "Check syntax (php-parallel-lint)"
         shell: "bash"
@@ -51,16 +51,16 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout repository"
-        uses: "actions/checkout@v4.2.2"
+        uses: "actions/checkout@v4"
 
       - name: "Install PHP"
-        uses: "shivammathur/setup-php@2.32.0"
+        uses: "shivammathur/setup-php@v2"
         with:
-          php-version: "8.0"
+          php-version: "latest"
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@3.0.0"
+        uses: "ramsey/composer-install@v3"
 
       - name: "Statically analyze code (PHPStan)"
         shell: "bash"
