@@ -10,14 +10,11 @@ interface IntegerIdentifierFactory extends IdentifierFactory
      * Creates a new instance of an identifier from the given integer
      * representation
      *
-     * @throws Exception\InvalidArgument MUST throw if the identifier is not
-     *     a legal value
-     * @throws Exception\OutOfRange MUST throw if the implementation does
-     *     not support integers outside the range of PHP_INT_MIN and
-     *     PHP_INT_MAX and the identifier evaluates to an integer outside
-     *     this range
+     * @param int | numeric-string $identifier
      *
-     * @psalm-param int | numeric-string $identifier
+     * @throws Exception\InvalidArgument MUST throw if the identifier is not a legal value
+     * @throws Exception\OutOfRange MUST throw if the implementation does not support integers outside the range of
+     *     `PHP_INT_MIN` and `PHP_INT_MAX` and the identifier evaluates to an integer outside this range
      */
     public function createFromInteger(int | string $identifier): IntegerIdentifier;
 }
