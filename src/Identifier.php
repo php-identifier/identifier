@@ -2,7 +2,12 @@
 
 namespace Identifier;
 
-interface Identifier
+use Stringable;
+
+/**
+ * Defines the most basic operations all identifiers support
+ */
+interface Identifier extends Stringable
 {
     /**
      * Returns an integer less than, equal to, or greater than zero if the
@@ -24,7 +29,16 @@ interface Identifier
     /**
      * Returns a string representation of the identifier
      *
+     * This MUST be aliased to `__toString()`. It is provided for convenience.
+     *
      * @return non-empty-string
      */
     public function toString(): string;
+
+    /**
+     * Returns a string representation of the identifier
+     *
+     * @return non-empty-string
+     */
+    public function __toString(): string;
 }
