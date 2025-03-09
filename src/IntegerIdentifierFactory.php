@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Identifier;
 
+/**
+ * Creates identifiers that may be represented as integers
+ */
 interface IntegerIdentifierFactory extends IdentifierFactory
 {
     public function create(): IntegerIdentifier;
 
     /**
-     * Creates a new instance of an identifier from the given integer
-     * representation
+     * Creates a new instance of an identifier from the given integer representation
      *
      * @param int | numeric-string $identifier
      *

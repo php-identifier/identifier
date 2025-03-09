@@ -250,13 +250,18 @@ date-time value associated with it that may be extracted from the identifier.
 
     namespace Identifier;
 
+    use DateTimeImmutable;
+
+    /**
+     * An identifier based on a date-time value
+     */
     interface DateTimeIdentifier extends Identifier
     {
         /**
          * Returns a date-time representation of the timestamp associated with
          * this identifier
          */
-        public function getDateTime(): \DateTimeImmutable;
+        public function getDateTime(): DateTimeImmutable;
     }
 
 IntegerIdentifier
@@ -277,6 +282,9 @@ return an integer outside these boundaries, it MUST throw an
 
     namespace Identifier;
 
+    /**
+     * An identifier that may be represented as an integer
+     */
     interface IntegerIdentifier extends Identifier
     {
         /**
@@ -285,8 +293,8 @@ return an integer outside these boundaries, it MUST throw an
          * @return int | numeric-string
          *
          * @throws Exception\OutOfRange MUST throw if the implementation does
-         *     not support integers outside the range of PHP_INT_MIN and
-         *     PHP_INT_MAX and the identifier evaluates to an integer outside
+         *     not support integers outside the range of `PHP_INT_MIN` and
+         *     `PHP_INT_MAX` and the identifier evaluates to an integer outside
          *     this range
          */
         public function toInteger(): int | string;
@@ -308,6 +316,9 @@ Descendants of ``IdentifierFactory`` MAY specify a narrower return type for the
 
     namespace Identifier;
 
+    /**
+     * Creates identifiers
+     */
     interface IdentifierFactory
     {
         /**
@@ -356,6 +367,11 @@ create identifiers from date-time values.
 
     namespace Identifier;
 
+    use DateTimeInterface;
+
+    /**
+     * Creates identifiers based on date-time values
+     */
     interface DateTimeIdentifierFactory extends IdentifierFactory
     {
         public function create(): DateTimeIdentifier;
@@ -363,13 +379,15 @@ create identifiers from date-time values.
         /**
          * Creates a new instance of an identifier from the given date-time
          *
-         * @param \DateTimeInterface $dateTime The date-time to use when
-         *     creating the identifier
+         * @param DateTimeInterface $dateTime The date-time to use when creating
+         *     the identifier
          *
          * @throws Exception\InvalidArgument MUST throw if $dateTime is not a
          *     legal value
          */
-        public function createFromDateTime(\DateTimeInterface $dateTime): DateTimeIdentifier;
+        public function createFromDateTime(
+            DateTimeInterface $dateTime,
+        ): DateTimeIdentifier;
     }
 
 IntegerIdentifierFactory
@@ -382,6 +400,9 @@ create identifiers from integers.
 
     namespace Identifier;
 
+    /**
+     * Creates identifiers that may be represented as integers
+     */
     interface IntegerIdentifierFactory extends IdentifierFactory
     {
         public function create(): IntegerIdentifier;
@@ -395,8 +416,8 @@ create identifiers from integers.
          * @throws Exception\InvalidArgument MUST throw if the identifier is not
          *     a legal value
          * @throws Exception\OutOfRange MUST throw if the implementation does
-         *     not support integers outside the range of PHP_INT_MIN and
-         *     PHP_INT_MAX and the identifier evaluates to an integer outside
+         *     not support integers outside the range of `PHP_INT_MIN` and
+         *     `PHP_INT_MAX` and the identifier evaluates to an integer outside
          *     this range
          */
         public function createFromInteger(int | string $identifier): IntegerIdentifier;
@@ -412,6 +433,9 @@ create identifiers from strings.
 
     namespace Identifier;
 
+    /**
+     * Creates identifiers from string representations
+     */
     interface StringIdentifierFactory extends IdentifierFactory
     {
         /**
@@ -442,10 +466,12 @@ implementation uses custom exception types, they MAY implement this interface.
 
     namespace Identifier\Exception;
 
+    use Throwable;
+
     /**
      * Base interface representing generic exceptions for identifiers
      */
-    interface IdentifierException extends \Throwable
+    interface IdentifierException extends Throwable
     {
     }
 

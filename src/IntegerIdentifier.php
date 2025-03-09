@@ -1,7 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Identifier;
 
+/**
+ * An identifier that may be represented as an integer
+ */
 interface IntegerIdentifier extends Identifier
 {
     /**

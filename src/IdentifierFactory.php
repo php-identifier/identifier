@@ -1,7 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Identifier;
 
+/**
+ * Creates identifiers
+ */
 interface IdentifierFactory
 {
     /**
