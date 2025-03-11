@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.3.0 - 2025-03-11
+
+- `Identifier` now extends `JsonSerializable`, and the `jsonSerialize()` method must be aliased to `__toString()`.
+
 ## 0.2.1 - 2025-03-09
 
 - Include section on "Providers" which was intended to be included in 0.2.0.

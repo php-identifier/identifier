@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Identifier;
 
+use JsonSerializable;
 use Stringable;
 
 /**
  * Defines the most basic operations all identifiers support
  */
-interface Identifier extends Stringable
+interface Identifier extends JsonSerializable, Stringable
 {
     /**
      * Returns an integer less than, equal to, or greater than zero if the identifier is less than, equal to, or greater
@@ -29,9 +30,22 @@ interface Identifier extends Stringable
     public function equals(mixed $other): bool;
 
     /**
+     * Returns a string representation of the identifier, formatted for use with JSON
+     *
+     * This MUST be aliased to `__toString()`; the serialized JSON form is a string.
+     *
+     * @see self::__toString()
+     *
+     * @return non-empty-string
+     */
+    public function jsonSerialize(): string;
+
+    /**
      * Returns a string representation of the identifier
      *
      * This MUST be aliased to `__toString()`. It is provided for convenience.
+     *
+     * @see self::__toString()
      *
      * @return non-empty-string
      */
