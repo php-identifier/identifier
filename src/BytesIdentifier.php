@@ -11,6 +11,8 @@ interface BytesIdentifier extends Identifier
 {
     /**
      * Returns the identifier as a raw byte string
+     *
+     * @return non-empty-string
      */
     public function toBytes(): string;
 }

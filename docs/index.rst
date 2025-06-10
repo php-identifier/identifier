@@ -252,6 +252,8 @@ UUIDs and ULIDs, both 128-bit integers, may be represented as bytes identifiers.
     {
         /**
          * Returns the identifier as a raw byte string
+         *
+         * @return non-empty-string
          */
         public function toBytes(): string;
     }
