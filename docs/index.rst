@@ -578,9 +578,8 @@ References
     <https://github.com/twitter-archive/snowflake/releases/tag/snowflake-2010>.
 .. [ULID] Feerasta, A., "Universally Unique Lexicographically Sortable Identifier",
     Commit d0c7170, May 2019, <https://github.com/ulid/spec>.
-.. [UUID] Leach, P., Mealling, M., and R. Salz, "A Universally Unique IDentifier
-    (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005,
-    <https://www.rfc-editor.org/info/rfc4122>.
+.. [UUID] Davis, K., Peabody, B., and P. Leach, "Universally Unique IDentifiers (UUIDs)",
+    RFC 9562, DOI 10.17487/RFC9562, May 2024, <https://www.rfc-editor.org/info/rfc9562>.
 .. [Wikipedia] Wikipedia, "Identifier", Page version ID 1122384949, November
     2022, <https://en.wikipedia.org/w/index.php?title=Identifier&oldid=1122384949>.
 
