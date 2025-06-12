@@ -18,6 +18,9 @@ final class BytesIdentifierFactoryTypes
         return $this->factory->create();
     }
 
+    /**
+     * @param non-empty-string $bytes
+     */
     public function createsIdentifierFromBytes(string $bytes): BytesIdentifier
     {
         return $this->factory->createFromBytes($bytes);

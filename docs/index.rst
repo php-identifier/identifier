@@ -366,8 +366,8 @@ identifiers from raw byte strings.
          * Creates a new instance of an identifier from the given byte string
          * representation
          *
-         * @param string $identifier A binary octet string encoded according to
-         *     the specification for the type of identifier
+         * @param non-empty-string $identifier A binary octet string encoded
+         *     according to the specification for the type of identifier
          *
          * @throws Exception\InvalidArgument MUST throw if $identifier is not a
          *     legal value
@@ -460,10 +460,10 @@ create identifiers from strings.
          * Creates a new instance of an identifier from the given string
          * representation
          *
-         * @param string $identifier The string representation of the identifier
-         *     is specific to the type of identifier and implementation; for
-         *     example, UUIDs use a specific format, while other identifiers may
-         *     use other formats
+         * @param non-empty-string $identifier The string representation of the
+         *     identifier is specific to the type of identifier and
+         *     implementation; for example, UUIDs use a specific format, while
+         *     other identifiers may use other formats
          *
          * @throws Exception\InvalidArgument MUST throw if the identifier is not
          *     a legal value
