@@ -7,7 +7,7 @@ namespace Identifier\StaticAnalysis;
 use Identifier\Identifier;
 use Identifier\IdentifierFactory;
 
-final class IdentifierFactoryTypes
+final readonly class IdentifierFactoryTypes
 {
     public function __construct(private IdentifierFactory $factory)
     {

@@ -6,8 +6,9 @@ namespace Identifier\StaticAnalysis;
 
 use Identifier\BytesIdentifier;
 use Identifier\BytesIdentifierFactory;
+use Identifier\Exception\InvalidArgument;
 
-final class BytesIdentifierFactoryTypes
+final readonly class BytesIdentifierFactoryTypes
 {
     public function __construct(private BytesIdentifierFactory $factory)
     {
@@ -20,6 +21,8 @@ final class BytesIdentifierFactoryTypes
 
     /**
      * @param non-empty-string $bytes
+     *
+     * @throws InvalidArgument
      */
     public function createsIdentifierFromBytes(string $bytes): BytesIdentifier
     {
