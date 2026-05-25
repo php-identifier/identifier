@@ -289,7 +289,7 @@ Integer identifiers are identifiers that may be represented as integers.
 
 Implementations MAY support identifiers greater than ``PHP_INT_MAX`` and less
 than ``PHP_INT_MIN``. In this case, the ``toInteger()`` method SHOULD return a
-string value. If the return value is a string, it MUST be a numeric string.
+string value. If the return value is a string, it MUST be an integer string.
 
 If an implementation does not support identifiers greater than ``PHP_INT_MAX``
 or less than ``PHP_INT_MIN``, and the ``toInteger()`` operation attempts to
@@ -308,7 +308,8 @@ return an integer outside these boundaries, it MUST throw an
         /**
          * Returns an integer representation of the identifier
          *
-         * @return int | numeric-string
+         * @return int | numeric-string The integer value or string integer
+         *     representation of the identifier.
          *
          * @throws Exception\OutOfRange MUST throw if the implementation does
          *     not support integers outside the range of `PHP_INT_MIN` and
@@ -429,7 +430,8 @@ create identifiers from integers.
          * Creates a new instance of an identifier from the given integer
          * representation
          *
-         * @param int | numeric-string $identifier
+         * @param int | numeric-string $identifier The integer value or string
+         *     integer representation of the identifier.
          *
          * @throws Exception\InvalidArgument MUST throw if the identifier is not
          *     a legal value
