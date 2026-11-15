@@ -10,7 +10,7 @@ code.
 
 You can find help and discussion in the following places:
 
-* GitHub Issues: <https://github.com/identifier/identifier/issues>
+* GitHub Issues: <https://github.com/php-identifier/identifier/issues>
 
 ## Reporting Bugs
 
@@ -168,9 +168,9 @@ composer test
 CaptainHook will automatically run all tests before pushing to the remote
 repository.
 
-[github]: https://github.com/identifier/identifier
-[issues]: https://github.com/identifier/identifier/issues
-[pull requests]: https://github.com/identifier/identifier/pulls
+[github]: https://github.com/php-identifier/identifier
+[issues]: https://github.com/php-identifier/identifier/issues
+[pull requests]: https://github.com/php-identifier/identifier/pulls
 [psr-12]: https://www.php-fig.org/psr/psr-12/
 [gh-flow]: https://guides.github.com/introduction/flow/
 [conventional commits]: https://www.conventionalcommits.org/

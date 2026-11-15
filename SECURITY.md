@@ -31,7 +31,7 @@ this repository, we encourage you to notify us.
 
 | Version | In scope | Source code |
 | ------- | :------: | ----------- |
-| latest  | ✅        | https://github.com/identifier/identifier |
+| latest  | ✅        | https://github.com/php-identifier/identifier |
 
 ## How to Submit a Report
 

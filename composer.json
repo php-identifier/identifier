@@ -12,6 +12,10 @@
         "ulid",
         "uuid"
     ],
+    "support": {
+        "issues": "https://github.com/php-identifier/identifier/issues",
+        "security": "https://github.com/php-identifier/identifier/security/policy"
+    },
     "require": {
         "php": "^8.2"
     },
