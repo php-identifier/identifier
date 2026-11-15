@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Identifier\StaticAnalysis;
 
+use Identifier\Exception\InvalidArgument;
 use Identifier\Exception\OutOfRange;
 use Identifier\IntegerIdentifier;
+use Identifier\IntegerIdentifierFactory;
 
 final readonly class IntegerIdentifierTypes
 {
-    public function __construct(private IntegerIdentifier $identifier)
-    {
+    public function __construct(
+        private IntegerIdentifier $identifier,
+        private IntegerIdentifierFactory $factory,
+    ) {
     }
 
     /**
@@ -20,8 +24,17 @@ final readonly class IntegerIdentifierTypes
     {
         $value = $this->identifier->toInteger();
 
-        // Since decimal-int-string is not available until PHPStan 2.2, ignore the return type error emitted.
-        // @phpstan-ignore return.type
         return $value + 1;
+    }
+
+    /**
+     * @param int | decimal-int-string $value
+     *
+     * @throws OutOfRange
+     * @throws InvalidArgument
+     */
+    public function createIntegerIdentifier(int | string $value): IntegerIdentifier
+    {
+        return $this->factory->createFromInteger($value);
     }
 }

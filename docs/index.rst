@@ -308,7 +308,7 @@ return an integer outside these boundaries, it MUST throw an
         /**
          * Returns an integer representation of the identifier
          *
-         * @return int | numeric-string The integer value or string integer
+         * @return int | decimal-int-string The integer value or string integer
          *     representation of the identifier.
          *
          * @throws Exception\OutOfRange MUST throw if the implementation does
@@ -430,8 +430,8 @@ create identifiers from integers.
          * Creates a new instance of an identifier from the given integer
          * representation
          *
-         * @param int | numeric-string $identifier The integer value or string
-         *     integer representation of the identifier.
+         * @param int | decimal-int-string $identifier The integer value or
+         *     string integer representation of the identifier.
          *
          * @throws Exception\InvalidArgument MUST throw if the identifier is not
          *     a legal value
