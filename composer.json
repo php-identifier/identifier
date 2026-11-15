@@ -20,9 +20,7 @@
         "php": "^8.2"
     },
     "require-dev": {
-        "captainhook/captainhook": "^5.29",
         "captainhook/plugin-composer": "^5.3",
-        "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
         "ergebnis/composer-normalize": "^2.52",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
@@ -45,7 +43,6 @@
     "config": {
         "allow-plugins": {
             "captainhook/plugin-composer": true,
-            "composer/package-versions-deprecated": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "ergebnis/composer-normalize": true,
             "phpstan/extension-installer": true
