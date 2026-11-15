@@ -24,8 +24,6 @@
         "captainhook/plugin-composer": "^5.3",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.2",
         "ergebnis/composer-normalize": "^2.52",
-        "php-parallel-lint/php-console-highlighter": "^1.0",
-        "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "ramsey/coding-standard": "^2.4",
@@ -63,33 +61,23 @@
         }
     },
     "scripts": {
-        "dev:analyze": [
-            "@dev:analyze:phpstan"
+        "analyze": "vendor/bin/phpstan analyze --ansi -v --memory-limit=1G",
+        "fix": [
+            "@composer normalize",
+            "vendor/bin/phpcbf --cache=build/cache/phpcs.cache"
         ],
-        "dev:analyze:phpstan": "phpstan analyse --ansi",
-        "dev:build:clean": "git clean -fX build/",
-        "dev:lint": [
-            "@dev:lint:syntax",
-            "@dev:lint:style"
+        "lint": [
+            "@composer validate --strict",
+            "@composer normalize --dry-run",
+            "vendor/bin/phpcs --colors --cache=build/cache/phpcs.cache",
+            "@analyze"
         ],
-        "dev:lint:fix": "phpcbf",
-        "dev:lint:style": "phpcs --colors",
-        "dev:lint:syntax": "parallel-lint --colors src/",
-        "dev:test": [
-            "@dev:lint",
-            "@dev:analyze"
-        ],
-        "test": "@dev:test"
+        "test": "@lint"
     },
     "scripts-descriptions": {
-        "dev:analyze": "Runs all static analysis checks.",
-        "dev:analyze:phpstan": "Runs the PHPStan static analyzer.",
-        "dev:build:clean": "Cleans the build/ directory.",
-        "dev:lint": "Runs all linting checks.",
-        "dev:lint:fix": "Auto-fixes coding standards issues, if possible.",
-        "dev:lint:style": "Checks for coding standards issues.",
-        "dev:lint:syntax": "Checks for syntax errors.",
-        "dev:test": "Runs linting, static analysis, and unit tests.",
-        "test": "Runs linting, static analysis, and unit tests."
+        "analyze": "Runs static analysis.",
+        "fix": "Fixes coding standards violations and normalizes composer.json.",
+        "lint": "Runs coding standards checks and static analysis.",
+        "test": "Runs coding standards checks and static analysis (an alias of lint)."
     }
 }

@@ -1,6 +1,6 @@
 # GitHub Actions Documentation: https://docs.github.com/en/actions
 
-name: "build"
+name: "Continuous Integration"
 
 on:
   push:
@@ -22,9 +22,10 @@ env:
   COMPOSER_ROOT_VERSION: "1.99.99"
 
 jobs:
-  coding-standards:
-    name: "Coding standards"
-    runs-on: "ubuntu-latest"
+  lint:
+    name: "Lint"
+    runs-on: "ubuntu-24.04"
+
     steps:
       - name: "Checkout repository"
         uses: "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" # v7.0.1
@@ -32,36 +33,11 @@ jobs:
       - name: "Install PHP"
         uses: "shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962" # 2.40.0
         with:
-          php-version: "latest"
+          php-version: "8.5"
           coverage: "none"
 
       - name: "Install dependencies (Composer)"
         uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
 
-      - name: "Check syntax (php-parallel-lint)"
-        shell: "bash"
-        run: "composer dev:lint:syntax"
-
-      - name: "Check coding standards (PHP_CodeSniffer)"
-        shell: "bash"
-        run: "composer dev:lint:style"
-
-  static-analysis:
-    name: "Static analysis"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Checkout repository"
-        uses: "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" # v7.0.1
-
-      - name: "Install PHP"
-        uses: "shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962" # 2.40.0
-        with:
-          php-version: "latest"
-          coverage: "none"
-
-      - name: "Install dependencies (Composer)"
-        uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
-
-      - name: "Statically analyze code (PHPStan)"
-        shell: "bash"
-        run: "composer dev:analyze:phpstan"
+      - name: "Lint"
+        run: "composer lint"
