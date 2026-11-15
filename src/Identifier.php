@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Identifier;
 
 use JsonSerializable;
+use Override;
 use Stringable;
 
 /**
@@ -35,6 +36,7 @@ interface Identifier extends JsonSerializable, Stringable
      *
      * @return non-empty-string
      */
+    #[Override]
     public function jsonSerialize(): string;
 
     /**
@@ -53,5 +55,6 @@ interface Identifier extends JsonSerializable, Stringable
      *
      * @return non-empty-string
      */
+    #[Override]
     public function __toString(): string;
 }

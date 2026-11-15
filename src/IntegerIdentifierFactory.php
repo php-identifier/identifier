@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Identifier;
 
+use Override;
+
 /**
  * Creates identifiers that may be represented as integers
  */
 interface IntegerIdentifierFactory extends IdentifierFactory
 {
+    #[Override]
     public function create(): IntegerIdentifier;
 
     /**

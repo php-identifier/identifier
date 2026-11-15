@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Identifier;
 
+use Override;
+
 /**
  * Creates identifiers based on arbitrary binary data
  */
 interface BytesIdentifierFactory extends IdentifierFactory
 {
+    #[Override]
     public function create(): BytesIdentifier;
 
     /**

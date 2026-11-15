@@ -173,6 +173,7 @@ etc.).
     namespace Identifier;
 
     use JsonSerializable;
+    use Override;
     use Stringable;
 
     /**
@@ -208,6 +209,7 @@ etc.).
          *
          * @return non-empty-string
          */
+        #[Override]
         public function jsonSerialize(): string;
 
         /**
@@ -227,6 +229,7 @@ etc.).
          *
          * @return non-empty-string
          */
+        #[Override]
         public function __toString(): string;
     }
 
@@ -356,11 +359,14 @@ identifiers from raw byte strings.
 
     namespace Identifier;
 
+    use Override;
+
     /**
      * Creates identifiers based on arbitrary binary data
      */
     interface BytesIdentifierFactory extends IdentifierFactory
     {
+        #[Override]
         public function create(): BytesIdentifier;
 
         /**
@@ -387,12 +393,14 @@ create identifiers from date-time values.
     namespace Identifier;
 
     use DateTimeInterface;
+    use Override;
 
     /**
      * Creates identifiers based on date-time values
      */
     interface DateTimeIdentifierFactory extends IdentifierFactory
     {
+        #[Override]
         public function create(): DateTimeIdentifier;
 
         /**
@@ -419,11 +427,14 @@ create identifiers from integers.
 
     namespace Identifier;
 
+    use Override;
+
     /**
      * Creates identifiers that may be represented as integers
      */
     interface IntegerIdentifierFactory extends IdentifierFactory
     {
+        #[Override]
         public function create(): IntegerIdentifier;
 
         /**

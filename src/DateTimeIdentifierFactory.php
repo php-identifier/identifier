@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Identifier;
 
 use DateTimeInterface;
+use Override;
 
 /**
  * Creates identifiers based on date-time values
  */
 interface DateTimeIdentifierFactory extends IdentifierFactory
 {
+    #[Override]
     public function create(): DateTimeIdentifier;
 
     /**

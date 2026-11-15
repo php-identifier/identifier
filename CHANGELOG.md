@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [Unreleased]
 
+### Added
+
+- `Identifier::jsonSerialize()`, `Identifier::__toString()`, and the `create()` methods of `BytesIdentifierFactory`, `DateTimeIdentifierFactory`, and `IntegerIdentifierFactory` now have the `#[Override]` attribute, since they redeclare methods of their parent interfaces.
+
 ### Changed
 
 - The minimum supported PHP version is now 8.3.
