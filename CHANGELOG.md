@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 - The minimum supported PHP version is now 8.3.
 
+### Fixed
+
+- `IntegerIdentifier::toInteger()` and `IntegerIdentifierFactory::createFromInteger()` now use the `decimal-int-string` type in place of `numeric-string`, so static analysis accepts only decimal integer strings.
+
 ## [0.4.1] - 2026-05-25
 
 ### Fixed
