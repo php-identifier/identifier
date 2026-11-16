@@ -584,8 +584,9 @@ References
 .. [RFC2119] Bradner, S., "Key words for use in RFCs to Indicate Requirement
     Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997,
     <https://www.rfc-editor.org/info/rfc2119>.
-.. [RFC8174] Saint-Andre, P. and J. Klensin, "Uniform Resource Names (URNs)", RFC
-    8141, DOI 10.17487/RFC8141, April 2017, <https://www.rfc-editor.org/info/rfc8141>.
+.. [RFC8174] Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key
+    Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017,
+    <https://www.rfc-editor.org/info/rfc8174>.
 .. [Snowflake] Twitter, "Snowflake is a network service for generating unique ID
     numbers at high scale with some simple guarantees.", Commit b3f6a3c, May 2014,
     <https://github.com/twitter-archive/snowflake/releases/tag/snowflake-2010>.
