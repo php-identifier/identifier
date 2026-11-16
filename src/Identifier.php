@@ -16,14 +16,14 @@ interface Identifier extends JsonSerializable, Stringable
     /**
      * Returns an integer less than, equal to, or greater than zero if the identifier is less than, equal to, or greater than the other value
      *
-     * @throws Exception\NotComparable MUST throw if the implementation is unable to make comparisons with the other value provided
+     * @throws Exception\NotComparable MUST throw if the implementation is cannot or chooses not to compare the other value provided
      */
     public function compareTo(mixed $other): int;
 
     /**
      * Returns true if the identifier is equal to the other value
      *
-     * @throws Exception\NotComparable MUST throw if the implementation is unable to make comparisons with the other value provided
+     * MUST NOT throw an exception; returns false if the implementation is cannot or chooses not to compare the other value provided.
      */
     public function equals(mixed $other): bool;
 

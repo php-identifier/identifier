@@ -158,11 +158,14 @@ or greater than zero, if the identifier is less than, equal to, or greater than
 the value. This allows for sorting identifiers.
 
 Likewise, ``equals()`` MUST accept any value for comparison and return boolean
-``true`` if the identifier is equal to the value and ``false`` otherwise.
-
-If an implementation wishes to indicate that it cannot compare the identifier
-to the provided value, it MUST throw an ``\Identifier\Exception\NotComparable``
+``true`` if the identifier is equal to the value and ``false`` otherwise. If an
+implementation cannot or chooses not to compare the identifier to the provided
+value, ``equals()`` MUST return ``false``. ``equals()`` MUST NOT throw an
 exception.
+
+If an implementation cannot or chooses not to compare the identifier to the
+value provided to ``compareTo()``, it MUST throw an
+``\Identifier\Exception\NotComparable`` exception.
 
 The ``toString()`` method SHOULD return a human-readable representation of the
 identifier (e.g., integer string, UUID, hexadecimal-encoded, Base64-encoded,
@@ -185,16 +188,16 @@ etc.).
          * Returns an integer less than, equal to, or greater than zero if the
          * identifier is less than, equal to, or greater than the other value
          *
-         * @throws Exception\NotComparable MUST throw if the implementation is
-         *     unable to make comparisons with the other value provided
+         * @throws Exception\NotComparable MUST throw if the implementation
+         *     cannot or chooses not to compare the other value provided
          */
         public function compareTo(mixed $other): int;
 
         /**
          * Returns true if the identifier is equal to the other value
          *
-         * @throws Exception\NotComparable MUST throw if the implementation is
-         *     unable to make comparisons with the other value provided
+         * MUST NOT throw an exception; returns false if the implementation
+         * cannot or chooses not to compare the other value provided.
          */
         public function equals(mixed $other): bool;
 
@@ -232,6 +235,81 @@ etc.).
         #[Override]
         public function __toString(): string;
     }
+
+Comparison Rules
+^^^^^^^^^^^^^^^^
+
+``compareTo()`` and ``equals()`` MUST agree. If ``compareTo()`` returns zero for
+a value, ``equals()`` MUST return ``true`` for that value. If ``compareTo()``
+returns an integer other than zero, or throws any exception, ``equals()`` MUST
+return ``false``.
+
+An identifier MUST be equal to itself. ``$a->compareTo($a)`` MUST return zero,
+and ``$a->equals($a)`` MUST return ``true``.
+
+Here, an implementation is a library that provides one or more kinds of
+identifier. In the rules below, ``$a``, ``$b``, and ``$c`` are identifiers
+created by the same implementation. If any call to ``compareTo()`` in one of the
+listed rules throws an ``\Identifier\Exception\NotComparable`` exception, that
+rule does not apply.
+
+* If ``$a->compareTo($b)`` returns an integer less than zero,
+  ``$b->compareTo($a)`` MUST return an integer greater than zero.
+* If ``$a->compareTo($b)`` returns an integer greater than zero,
+  ``$b->compareTo($a)`` MUST return an integer less than zero.
+* If ``$a->compareTo($b)`` returns zero, ``$b->compareTo($a)`` MUST return zero.
+* If ``$a->compareTo($b)`` and ``$b->compareTo($c)`` each return an integer less
+  than zero, ``$a->compareTo($c)`` MUST return an integer less than zero.
+* If ``$a->compareTo($b)`` and ``$b->compareTo($c)`` each return an integer
+  greater than zero, ``$a->compareTo($c)`` MUST return an integer greater than
+  zero.
+* If ``$a->compareTo($b)`` and ``$b->compareTo($c)`` each return zero,
+  ``$a->compareTo($c)`` MUST return zero.
+
+If ``$a->compareTo($b)`` throws an ``\Identifier\Exception\NotComparable``
+exception, ``$b->compareTo($a)`` MUST throw one too.
+
+An implementation might be given a value it did not create: an identifier from
+another implementation, or a value that is not an identifier. In the rules
+below, ``$a`` and ``$b`` are identifiers created by the same implementation, and
+``$value`` is any value. If any call to ``compareTo()`` in one of the listed
+rules throws an ``\Identifier\Exception\NotComparable`` exception, that rule
+does not apply.
+
+* For the same ``$a`` and ``$value``, while neither changes, if
+  ``$a->compareTo($value)`` returns an integer less than zero, it MUST always
+  return an integer less than zero. If it returns zero, it MUST always return
+  zero. If it returns an integer greater than zero, it MUST always return an
+  integer greater than zero.
+* If ``$a->compareTo($b)`` and ``$b->compareTo($value)`` each return an integer
+  less than zero, ``$a->compareTo($value)`` MUST return an integer less than
+  zero.
+* If ``$a->compareTo($b)`` and ``$b->compareTo($value)`` each return an integer
+  greater than zero, ``$a->compareTo($value)`` MUST return an integer greater
+  than zero.
+* If ``$a->compareTo($b)`` returns zero, ``$a->compareTo($value)`` and
+  ``$b->compareTo($value)`` MUST both return an integer less than zero, both
+  return zero, or both return an integer greater than zero.
+* If ``$b->compareTo($value)`` returns zero, ``$a->compareTo($b)`` and
+  ``$a->compareTo($value)`` MUST both return an integer less than zero, both
+  return zero, or both return an integer greater than zero.
+
+For the same ``$a`` and ``$value``, while neither changes, ``compareTo()`` MUST
+either always throw an ``\Identifier\Exception\NotComparable`` exception or
+never throw one.
+
+Two implementations might compare the same values differently, and one might be
+able to compare values that the other cannot. Each implementation need only be
+consistent in its own comparisons. An identifier from one implementation might
+be able to compare itself with an identifier from another, while the other
+throws an ``\Identifier\Exception\NotComparable`` exception when asked to do the
+reverse.
+
+This specification does not define the order of identifiers, how an
+implementation compares two values, or whether equal means identical in the
+sense of PHP's identity operator (``===``). Each implementation decides these
+for itself, so identifiers from one implementation might not sort in the same
+order as those from another.
 
 BytesIdentifier
 ~~~~~~~~~~~~~~~
@@ -527,8 +605,8 @@ NotComparable
 ~~~~~~~~~~~~~
 
 If an implementation cannot or chooses not to compare a given value to an
-identifier (through ``Identifier::compareTo()`` or ``Identifier::equals()``), it
-MUST throw a ``NotComparable`` exception.
+identifier through ``Identifier::compareTo()``, it MUST throw a
+``NotComparable`` exception.
 
 .. code-block:: php
 

@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/) 
 
 ### Changed
 
+- **Breaking:** `Identifier::equals()` MUST NOT throw an exception. It returns `false` for a value the implementation cannot or chooses not to compare, and only `Identifier::compareTo()` throws `NotComparable`.
+- `Identifier::compareTo()` and `Identifier::equals()` have new requirements: the two MUST agree, an identifier MUST be equal to itself, and `compareTo()` MUST follow the comparison rules in the specification, so that sorting is dependable.
 - The minimum supported PHP version is now 8.3.
 
 ### Fixed
