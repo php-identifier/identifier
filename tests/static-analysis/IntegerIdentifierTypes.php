@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Identifier\StaticAnalysis;
 
 use Identifier\Exception\InvalidArgument;
-use Identifier\Exception\OutOfRange;
+use Identifier\Exception\NotConvertible;
 use Identifier\IntegerIdentifier;
 use Identifier\IntegerIdentifierFactory;
 
@@ -18,7 +18,7 @@ final readonly class IntegerIdentifierTypes
     }
 
     /**
-     * @throws OutOfRange
+     * @throws NotConvertible
      */
     public function returnsIntegerValue(): int
     {
@@ -30,7 +30,6 @@ final readonly class IntegerIdentifierTypes
     /**
      * @param int | decimal-int-string $value
      *
-     * @throws OutOfRange
      * @throws InvalidArgument
      */
     public function createIntegerIdentifier(int | string $value): IntegerIdentifier

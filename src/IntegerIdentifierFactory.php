@@ -20,7 +20,6 @@ interface IntegerIdentifierFactory extends IdentifierFactory
      * @param int | decimal-int-string $identifier The integer value or string integer representation of the identifier.
      *
      * @throws Exception\InvalidArgument MUST throw if the identifier is not a legal value
-     * @throws Exception\OutOfRange MUST throw if the implementation does not support integers outside the range of `PHP_INT_MIN` and `PHP_INT_MAX` and the identifier evaluates to an integer outside this range
      */
     public function createFromInteger(int | string $identifier): IntegerIdentifier;
 }

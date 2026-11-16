@@ -14,7 +14,7 @@ interface IntegerIdentifier extends Identifier
      *
      * @return int | decimal-int-string The integer value or string integer representation of the identifier.
      *
-     * @throws Exception\OutOfRange MUST throw if the implementation does not support integers outside the range of `PHP_INT_MIN` and `PHP_INT_MAX` and the identifier evaluates to an integer outside this range
+     * @throws Exception\NotConvertible MUST throw if the implementation cannot return the identifier as an integer or an integer string
      */
     public function toInteger(): int | string;
 }

@@ -9,12 +9,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/) 
 ### Added
 
 - `Identifier::jsonSerialize()`, `Identifier::__toString()`, and the `create()` methods of `BytesIdentifierFactory`, `DateTimeIdentifierFactory`, and `IntegerIdentifierFactory` now have the `#[Override]` attribute, since they redeclare methods of their parent interfaces.
+- `Identifier\Exception\NotConvertible`, which a method throws when it cannot return the identifier's value in the form it promises. `DateTimeIdentifier::getDateTime()` MUST throw it if the implementation cannot return the date-time.
 
 ### Changed
 
 - **Breaking:** `Identifier::equals()` MUST NOT throw an exception. It returns `false` for a value the implementation cannot or chooses not to compare, and only `Identifier::compareTo()` throws `NotComparable`.
+- **Breaking:** `Identifier\Exception\NotComparable` now extends `Identifier\Exception\InvalidArgument`.
+- **Breaking:** `IntegerIdentifier::toInteger()` throws `NotConvertible` in place of `OutOfRange`.
+- **Breaking:** `IntegerIdentifierFactory::createFromInteger()` throws `InvalidArgument` for an integer outside the range the implementation supports, in place of `OutOfRange`.
+- `InvalidArgument` now applies to any method of the specification given an argument that is not a legal value, not only to factory methods. The rule does not apply to `Identifier::equals()`, which throws nothing.
 - `Identifier::compareTo()` and `Identifier::equals()` have new requirements: the two MUST agree, an identifier MUST be equal to itself, and `compareTo()` MUST follow the comparison rules in the specification, so that sorting is dependable.
 - The minimum supported PHP version is now 8.3.
+
+### Removed
+
+- **Breaking:** `Identifier\Exception\OutOfRange`. Use `InvalidArgument` for an argument that is not a legal value and `NotConvertible` for a value that cannot be returned.
 
 ### Fixed
 

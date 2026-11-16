@@ -345,6 +345,10 @@ DateTimeIdentifier
 A date-time identifier is based on a date-time value or otherwise has a
 date-time value associated with it that may be extracted from the identifier.
 
+If an implementation cannot return the date-time associated with the
+identifier, ``getDateTime()`` MUST throw an
+``\Identifier\Exception\NotConvertible`` exception.
+
 .. code-block:: php
 
     namespace Identifier;
@@ -359,6 +363,9 @@ date-time value associated with it that may be extracted from the identifier.
         /**
          * Returns a date-time representation of the timestamp associated with
          * this identifier
+         *
+         * @throws Exception\NotConvertible MUST throw if the implementation
+         *     cannot return the date-time associated with this identifier
          */
         public function getDateTime(): DateTimeImmutable;
     }
@@ -372,10 +379,11 @@ Implementations MAY support identifiers greater than ``PHP_INT_MAX`` and less
 than ``PHP_INT_MIN``. In this case, the ``toInteger()`` method SHOULD return a
 string value. If the return value is a string, it MUST be an integer string.
 
-If an implementation does not support identifiers greater than ``PHP_INT_MAX``
-or less than ``PHP_INT_MIN``, and the ``toInteger()`` operation attempts to
-return an integer outside these boundaries, it MUST throw an
-``\Identifier\Exception\OutOfRange`` exception.
+If an implementation cannot return the identifier as an integer or an integer
+string, ``toInteger()`` MUST throw an ``\Identifier\Exception\NotConvertible``
+exception. For example, an implementation that does not support identifiers
+greater than ``PHP_INT_MAX`` or less than ``PHP_INT_MIN`` throws it when the
+identifier evaluates to an integer outside this range.
 
 .. code-block:: php
 
@@ -392,10 +400,8 @@ return an integer outside these boundaries, it MUST throw an
          * @return int | decimal-int-string The integer value or string integer
          *     representation of the identifier.
          *
-         * @throws Exception\OutOfRange MUST throw if the implementation does
-         *     not support integers outside the range of `PHP_INT_MIN` and
-         *     `PHP_INT_MAX` and the identifier evaluates to an integer outside
-         *     this range
+         * @throws Exception\NotConvertible MUST throw if the implementation
+         *     cannot return the identifier as an integer or an integer string
          */
         public function toInteger(): int | string;
     }
@@ -524,10 +530,6 @@ create identifiers from integers.
          *
          * @throws Exception\InvalidArgument MUST throw if the identifier is not
          *     a legal value
-         * @throws Exception\OutOfRange MUST throw if the implementation does
-         *     not support integers outside the range of `PHP_INT_MIN` and
-         *     `PHP_INT_MAX` and the identifier evaluates to an integer outside
-         *     this range
          */
         public function createFromInteger(int | string $identifier): IntegerIdentifier;
     }
@@ -587,8 +589,13 @@ implementation uses custom exception types, they MAY implement this interface.
 InvalidArgument
 ~~~~~~~~~~~~~~~
 
-Identifier factory methods that accept arguments MUST throw ``InvalidArgument``
-exceptions if any of the arguments are not legal values for the method.
+A method defined by this specification that accepts an argument MUST throw an
+``InvalidArgument`` exception if the argument is not a legal value for the
+method, whatever the reason. Each implementation decides which values are legal
+for each method.
+
+This rule does not apply to ``Identifier::equals()``, which MUST NOT throw an
+exception.
 
 .. code-block:: php
 
@@ -608,6 +615,10 @@ If an implementation cannot or chooses not to compare a given value to an
 identifier through ``Identifier::compareTo()``, it MUST throw a
 ``NotComparable`` exception.
 
+``NotComparable`` extends ``InvalidArgument``, so code that catches
+``InvalidArgument`` also catches the exception ``Identifier::compareTo()``
+throws for a value it cannot or chooses not to compare.
+
 .. code-block:: php
 
     namespace Identifier\Exception;
@@ -615,27 +626,27 @@ identifier through ``Identifier::compareTo()``, it MUST throw a
     /**
      * The given value cannot be compared to the identifier
      */
-    interface NotComparable extends IdentifierException
+    interface NotComparable extends InvalidArgument
     {
     }
 
-OutOfRange
-~~~~~~~~~~
+NotConvertible
+~~~~~~~~~~~~~~
 
-If an implementation does not support integer values outside the range
-*[ PHP_INT_MIN .. PHP_INT_MAX ]*, it MUST throw an ``OutOfRange`` exception when
-encountering integers outside this range as input arguments to
-``IntegerIdentifierFactory::createFromInteger()`` or when evaluating return
-values for ``IntegerIdentifier::toInteger()``.
+If ``IntegerIdentifier::toInteger()`` or ``DateTimeIdentifier::getDateTime()``
+cannot return the identifier's value in the form the method promises, it MUST
+throw a ``NotConvertible`` exception. Each implementation decides when a value
+cannot be converted: an integer too large for it to return, a time outside the
+range it supports, or any other reason.
 
 .. code-block:: php
 
     namespace Identifier\Exception;
 
     /**
-     * The value is out of the range of acceptable values
+     * The identifier cannot be returned in the form requested
      */
-    interface OutOfRange extends IdentifierException
+    interface NotConvertible extends IdentifierException
     {
     }
 
