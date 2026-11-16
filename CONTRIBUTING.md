@@ -147,7 +147,7 @@ After tagging, add a new, empty `## [Unreleased]` heading at the top and point i
 [gh-flow]: https://guides.github.com/introduction/flow/
 [github]: https://github.com/php-identifier/identifier
 [issues]: https://github.com/php-identifier/identifier/issues
-[keep a changelog]: https://keepachangelog.com/en/1.1.0/
+[keep a changelog]: https://keepachangelog.com/en/2.0.0/
 [per-cs]: https://www.php-fig.org/per/coding-style/
 [php]: https://www.php.net
 [php_codesniffer]: https://github.com/PHPCSStandards/PHP_CodeSniffer
