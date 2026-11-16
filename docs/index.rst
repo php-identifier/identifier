@@ -149,8 +149,7 @@ Identifier
 ~~~~~~~~~~
 
 The identifier interface defines the most basic operations all identifiers
-support. These basic operations provide the ability to compare identifiers and
-convert the identifier to a string for presentation.
+support. These basic operations provide the ability to compare identifiers.
 
 To provide comparison, implementations MUST implement ``compareTo()``, which
 MUST accept any value for comparison, returning an integer less than, equal to,
@@ -167,22 +166,14 @@ If an implementation cannot or chooses not to compare the identifier to the
 value provided to ``compareTo()``, it MUST throw an
 ``\Identifier\Exception\NotComparable`` exception.
 
-The ``toString()`` method SHOULD return a human-readable representation of the
-identifier (e.g., integer string, UUID, hexadecimal-encoded, Base64-encoded,
-etc.).
-
 .. code-block:: php
 
     namespace Identifier;
 
-    use JsonSerializable;
-    use Override;
-    use Stringable;
-
     /**
      * Defines the most basic operations all identifiers support
      */
-    interface Identifier extends JsonSerializable, Stringable
+    interface Identifier
     {
         /**
          * Returns an integer less than, equal to, or greater than zero if the
@@ -200,40 +191,6 @@ etc.).
          * cannot or chooses not to compare the other value provided.
          */
         public function equals(mixed $other): bool;
-
-        /**
-         * Returns a string representation of the identifier, formatted for use
-         * with JSON
-         *
-         * This MUST be aliased to `__toString()`; the serialized JSON form is a
-         * string.
-         *
-         * @see self::__toString()
-         *
-         * @return non-empty-string
-         */
-        #[Override]
-        public function jsonSerialize(): string;
-
-        /**
-         * Returns a string representation of the identifier
-         *
-         * This MUST be aliased to `__toString()`. It is provided for
-         * convenience.
-         *
-         * @see self::__toString()
-         *
-         * @return non-empty-string
-         */
-        public function toString(): string;
-
-        /**
-         * Returns a string representation of the identifier
-         *
-         * @return non-empty-string
-         */
-        #[Override]
-        public function __toString(): string;
     }
 
 Comparison Rules
@@ -315,8 +272,7 @@ BytesIdentifier
 ~~~~~~~~~~~~~~~
 
 A bytes identifier is an identifier that is based on arbitrary binary data. The
-``toBytes()`` method MUST return the byte string representation of the
-identifier.
+``toBytes()`` method MUST return the raw byte string of the identifier.
 
 Bytes identifiers are useful especially when the size of the identifier
 overflows the system limitations for maximum or minimum integers. For example,
@@ -404,6 +360,38 @@ identifier evaluates to an integer outside this range.
          *     cannot return the identifier as an integer or an integer string
          */
         public function toInteger(): int | string;
+    }
+
+StringIdentifier
+~~~~~~~~~~~~~~~~
+
+String identifiers are identifiers that may be represented as strings.
+
+The ``toString()`` method SHOULD return a human-readable representation of the
+identifier (e.g., integer string, UUID, hexadecimal-encoded, Base64-encoded,
+etc.).
+
+If an implementation cannot return the identifier as a string, ``toString()``
+MUST throw an ``\Identifier\Exception\NotConvertible`` exception.
+
+.. code-block:: php
+
+    namespace Identifier;
+
+    /**
+     * An identifier that may be represented as a string
+     */
+    interface StringIdentifier extends Identifier
+    {
+        /**
+         * Returns a string representation of the identifier
+         *
+         * @return non-empty-string
+         *
+         * @throws Exception\NotConvertible MUST throw if the implementation
+         *     cannot return the identifier as a string
+         */
+        public function toString(): string;
     }
 
 Identifier Factories
@@ -544,11 +532,16 @@ create identifiers from strings.
 
     namespace Identifier;
 
+    use Override;
+
     /**
      * Creates identifiers from string representations
      */
     interface StringIdentifierFactory extends IdentifierFactory
     {
+        #[Override]
+        public function create(): StringIdentifier;
+
         /**
          * Creates a new instance of an identifier from the given string
          * representation
@@ -561,7 +554,7 @@ create identifiers from strings.
          * @throws Exception\InvalidArgument MUST throw if the identifier is not
          *     a legal value
          */
-        public function createFromString(string $identifier): Identifier;
+        public function createFromString(string $identifier): StringIdentifier;
     }
 
 Exceptions
@@ -633,11 +626,11 @@ throws for a value it cannot or chooses not to compare.
 NotConvertible
 ~~~~~~~~~~~~~~
 
-If ``IntegerIdentifier::toInteger()`` or ``DateTimeIdentifier::getDateTime()``
-cannot return the identifier's value in the form the method promises, it MUST
-throw a ``NotConvertible`` exception. Each implementation decides when a value
-cannot be converted: an integer too large for it to return, a time outside the
-range it supports, or any other reason.
+If ``DateTimeIdentifier::getDateTime()``, ``IntegerIdentifier::toInteger()``, or
+``StringIdentifier::toString()`` cannot return the identifier's value in the
+form the method promises, it MUST throw a ``NotConvertible`` exception. Each
+implementation decides when a value cannot be converted: an integer too large
+for it to return, a time outside the range it supports, or any other reason.
 
 .. code-block:: php
 

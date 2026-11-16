@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace Identifier;
 
+use Override;
+
 /**
  * Creates identifiers from string representations
  */
 interface StringIdentifierFactory extends IdentifierFactory
 {
+    #[Override]
+    public function create(): StringIdentifier;
+
     /**
      * Creates a new instance of an identifier from the given string representation
      *
@@ -16,5 +21,5 @@ interface StringIdentifierFactory extends IdentifierFactory
      *
      * @throws Exception\InvalidArgument MUST throw if the identifier is not a legal value
      */
-    public function createFromString(string $identifier): Identifier;
+    public function createFromString(string $identifier): StringIdentifier;
 }
