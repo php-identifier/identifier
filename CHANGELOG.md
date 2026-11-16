@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/) 
 
 ## [Unreleased]
 
+### Added
+
+- **Breaking:** `Identifier::getSortKey()`, which returns a non-empty string of bytes that places the identifier in order among other identifiers. Among identifiers created by the same implementation, the byte-by-byte order of two sort keys MUST match `Identifier::compareTo()`, where `compareTo()` does not throw.
+
+### Changed
+
+- **Breaking:** If `Identifier::equals()` returns `true`, `Identifier::compareTo()` MUST return zero. If `compareTo()` returns zero, `equals()` MAY return either `true` or `false`.
+- `Identifier::equals()` has new requirements: among identifiers created by the same implementation, it MUST return the same result in both directions and across three identifiers that are equal to one another, and it MUST always return the same result for the same values. The specification lists the rules.
+
 ## [0.5.0] - 2026-11-16
 
 ### Added

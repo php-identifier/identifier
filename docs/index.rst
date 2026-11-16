@@ -166,6 +166,14 @@ If an implementation cannot or chooses not to compare the identifier to the
 value provided to ``compareTo()``, it MUST throw an
 ``\Identifier\Exception\NotComparable`` exception.
 
+Implementations MUST also implement ``getSortKey()``, which returns a non-empty
+string of bytes that places the identifier in order among other identifiers.
+``getSortKey()`` MUST NOT throw an exception. While an identifier does not
+change, ``getSortKey()`` MUST always return the same string. Any implementation
+may compare this sort key with the sort key of another identifier. This
+specification requires the order of two sort keys to match ``compareTo()`` only
+when the same implementation created both identifiers.
+
 .. code-block:: php
 
     namespace Identifier;
@@ -191,15 +199,32 @@ value provided to ``compareTo()``, it MUST throw an
          * cannot or chooses not to compare the other value provided.
          */
         public function equals(mixed $other): bool;
+
+        /**
+         * Returns a string of bytes that places the identifier in order among
+         * other identifiers
+         *
+         * Any implementation may compare this sort key with the sort key of
+         * another identifier. This specification requires the order of two sort
+         * keys to match compareTo() only when the same implementation created
+         * both identifiers.
+         *
+         * MUST NOT throw an exception.
+         *
+         * @return non-empty-string
+         */
+        public function getSortKey(): string;
     }
 
 Comparison Rules
 ^^^^^^^^^^^^^^^^
 
-``compareTo()`` and ``equals()`` MUST agree. If ``compareTo()`` returns zero for
-a value, ``equals()`` MUST return ``true`` for that value. If ``compareTo()``
-returns an integer other than zero, or throws any exception, ``equals()`` MUST
-return ``false``.
+If ``equals()`` returns ``true`` for a value, ``compareTo()`` MUST return zero
+for that value. If ``compareTo()`` returns an integer other than zero, or throws
+any exception, ``equals()`` MUST return ``false``. If ``compareTo()`` returns
+zero for a value, ``equals()`` MAY return either ``true`` or ``false``; an
+implementation might, for example, treat two identifiers of different types as
+unequal even though neither sorts before the other.
 
 An identifier MUST be equal to itself. ``$a->compareTo($a)`` MUST return zero,
 and ``$a->equals($a)`` MUST return ``true``.
@@ -225,6 +250,30 @@ rule does not apply.
 
 If ``$a->compareTo($b)`` throws an ``\Identifier\Exception\NotComparable``
 exception, ``$b->compareTo($a)`` MUST throw one too.
+
+The rules for ``equals()`` use the same ``$a``, ``$b``, and ``$c``:
+
+* If ``$a->equals($b)`` returns ``true``, ``$b->equals($a)`` MUST return
+  ``true``.
+* If ``$a->equals($b)`` and ``$b->equals($c)`` each return ``true``,
+  ``$a->equals($c)`` MUST return ``true``.
+
+For the same ``$a`` and any value ``$value``, while neither changes,
+``$a->equals($value)`` MUST always return the same result.
+
+Sort keys are compared byte by byte, as PHP's ``strcmp()`` function compares two
+strings. For any ``$a`` and ``$b`` created by the same implementation, if
+``$a->compareTo($b)`` does not throw an ``\Identifier\Exception\NotComparable``
+exception:
+
+* If the sort key of ``$a`` is less than the sort key of ``$b``,
+  ``$a->compareTo($b)`` MUST return an integer less than zero.
+* If the sort key of ``$a`` is greater than the sort key of ``$b``,
+  ``$a->compareTo($b)`` MUST return an integer greater than zero.
+* If the two sort keys are the same string, ``$a->compareTo($b)`` MUST return
+  zero.
+* If ``$a->compareTo($b)`` returns zero, the sort key of ``$a`` and the sort key
+  of ``$b`` MUST be the same string.
 
 An implementation might be given a value it did not create: an identifier from
 another implementation, or a value that is not an identifier. In the rules
@@ -255,6 +304,10 @@ For the same ``$a`` and ``$value``, while neither changes, ``compareTo()`` MUST
 either always throw an ``\Identifier\Exception\NotComparable`` exception or
 never throw one.
 
+When ``compareTo()`` is given an identifier from another implementation, the
+implementation MAY compare the two sort keys, MAY compare the identifiers in
+another way, and MAY throw an ``\Identifier\Exception\NotComparable`` exception.
+
 Two implementations might compare the same values differently, and one might be
 able to compare values that the other cannot. Each implementation need only be
 consistent in its own comparisons. An identifier from one implementation might
@@ -267,6 +320,11 @@ implementation compares two values, or whether equal means identical in the
 sense of PHP's identity operator (``===``). Each implementation decides these
 for itself, so identifiers from one implementation might not sort in the same
 order as those from another.
+
+This specification also does not define what the bytes of a sort key represent
+or how they relate to any other form of the identifier, such as the string that
+``BytesIdentifier::toBytes()`` returns. A sort key from one implementation might
+not sort meaningfully against a sort key from another.
 
 BytesIdentifier
 ~~~~~~~~~~~~~~~

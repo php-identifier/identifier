@@ -22,4 +22,15 @@ interface Identifier
      * MUST NOT throw an exception; returns false if the implementation cannot or chooses not to compare the other value provided.
      */
     public function equals(mixed $other): bool;
+
+    /**
+     * Returns a string of bytes that places the identifier in order among other identifiers
+     *
+     * Any implementation may compare this sort key with the sort key of another identifier. This specification requires the order of two sort keys to match compareTo() only when the same implementation created both identifiers.
+     *
+     * MUST NOT throw an exception.
+     *
+     * @return non-empty-string
+     */
+    public function getSortKey(): string;
 }
