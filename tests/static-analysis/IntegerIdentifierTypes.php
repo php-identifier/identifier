@@ -24,11 +24,17 @@ final readonly class IntegerIdentifierTypes
     {
         $value = $this->identifier->toInteger();
 
+        // I attempted to use decimal-int-string (available in PHPStan and
+        // Psalm), but decimal-int-string does not allow arbitrary precision
+        // integers, so I switched back to numeric-string, and I've chosen to
+        // ignore the return type in this test, for now.
+        // See: https://github.com/phpstan/phpstan/issues/15761
+        // @phpstan-ignore return.type
         return $value + 1;
     }
 
     /**
-     * @param int | decimal-int-string $value
+     * @param int | numeric-string $value
      *
      * @throws InvalidArgument
      */

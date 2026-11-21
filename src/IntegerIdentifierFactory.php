@@ -17,7 +17,7 @@ interface IntegerIdentifierFactory extends IdentifierFactory
     /**
      * Creates a new instance of an identifier from the given integer representation
      *
-     * @param int | decimal-int-string $identifier The integer value or string integer representation of the identifier.
+     * @param int | numeric-string $identifier The integer value or string integer representation of the identifier.
      *
      * @throws Exception\InvalidArgument MUST throw if the identifier is not a legal value
      */

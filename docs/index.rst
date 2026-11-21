@@ -411,7 +411,7 @@ identifier evaluates to an integer outside this range.
         /**
          * Returns an integer representation of the identifier
          *
-         * @return int | decimal-int-string The integer value or string integer
+         * @return int | numeric-string The integer value or string integer
          *     representation of the identifier.
          *
          * @throws Exception\NotConvertible MUST throw if the implementation
@@ -571,7 +571,7 @@ create identifiers from integers.
          * Creates a new instance of an identifier from the given integer
          * representation
          *
-         * @param int | decimal-int-string $identifier The integer value or
+         * @param int | numeric-string $identifier The integer value or
          *     string integer representation of the identifier.
          *
          * @throws Exception\InvalidArgument MUST throw if the identifier is not

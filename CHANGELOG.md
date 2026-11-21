@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/) 
 
 ## [Unreleased]
 
+### Fixed
+
+- `IntegerIdentifier::toInteger()` and `IntegerIdentifierFactory::createFromInteger()` use the `numeric-string` type in place of `decimal-int-string`, since PHPStan and Psalm accept a `decimal-int-string` only when it fits in a PHP `int`, which leaves out integer strings of arbitrary size. See [phpstan/phpstan#15761](https://github.com/phpstan/phpstan/issues/15761).
+
 ## [0.6.0] - 2026-11-16
 
 ### Added
